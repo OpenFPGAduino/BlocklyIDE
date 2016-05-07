@@ -27,6 +27,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
+  
     <title>Editor</title>
     <style type="text/css" media="screen">
         .ace_editor {
@@ -64,6 +65,7 @@
     <script src="blockly/blocks_compressed.js"></script>
     <script src="blockly/javascript_compressed.js"></script>
     <script src="blockly/msg/js/en.js"></script>
+    <script src="rgb_led.js"></script>
 
 </head>
 
@@ -103,6 +105,7 @@ Configurations
  <!-- Blockly toolbox -->
   <xml id="toolbox" style="display: none">
     <category name="Logic">
+      <block type="rgb_led"></block>
       <block type="logic_compare"></block>
       <block type="logic_operation"></block>
       <block type="logic_negate"></block>
@@ -319,6 +322,9 @@ Configurations
       </block>    
     </category>
     <category name="Functions" custom="PROCEDURE"></category>
+    <category name="Openfpgaduino">
+      <block type="rgb_led"></block>
+    </category>
   </xml>
 
     <!-- Blockly initial code -->
