@@ -32,7 +32,7 @@ Blockly.JavaScript['rgb_led'] = function(block) {
     var code = 
     "var url = 'fpga/api/call/led';\n" + 
     "var xhr = new XMLHttpRequest();\n" +
-    "var post = ["+led+','+ r +','+g+','+b+"];\n" +
+    "var post = ["+led+','+ b +','+g+','+r+"];\n" +
     "xhr.open('post', url, false);\n" + 
     "xhr.setRequestHeader('Content-Type', 'application/json');\n" +
     "xhr.send(JSON.stringify(post));"
