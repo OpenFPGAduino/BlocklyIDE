@@ -209,8 +209,14 @@ Configurations
       </block>
       <block type="math_random_float"></block>
     </category>
-    <category name="Text">
-      <block type="text_print" inline="false"  ></block>
+    <category name="Text" colour="160">
+      <block type="text_print" inline="false">
+       <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">Openfpgaduino</field>
+          </shadow>
+        </value>
+      </block>
       <block type="text"  >
         <title name="TEXT"></title>
       </block>
@@ -261,7 +267,7 @@ Configurations
         <title name="MODE">BOTH</title>
       </block>
     </category>
-    <category name="Lists">
+    <category name="Lists" colour="260">
       <block type="variables_set"><title name="VAR">list</title><value name="VALUE">
           <block type="lists_create_empty"  ></block>
       </value></block>
@@ -320,7 +326,7 @@ Configurations
         </value>
       </block>
     </category>   
-    <category name="Variables">
+    <category name="Variables" colour="330">
       <block type="variables_set" inline="false"  >
         <title name="VAR">item</title>
       </block>
@@ -328,8 +334,9 @@ Configurations
         <title name="VAR">item</title>
       </block>    
     </category>
-    <category name="Functions" custom="PROCEDURE"></category>
-    <category name="Openfpgaduino">
+    <category name="Functions" custom="PROCEDURE" colour="290"></category>
+    <sep></sep>
+    <category name="Openfpgaduino" colour="260">
       <block type="rgb_led">
         <value name="r">
           <block type="math_number">
