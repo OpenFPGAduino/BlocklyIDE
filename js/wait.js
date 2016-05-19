@@ -10,7 +10,7 @@ Blockly.Blocks['wait'] = {
     this.setNextStatement(true, null);
     this.setColour(120);
     this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
+    this.setHelpUrl('http://openfpgaduino.github.io/');
   }
 };
 
