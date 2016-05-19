@@ -1,18 +1,12 @@
-Blockly.Blocks['rgb_led'] = {
+Blockly.Blocks['led'] = {
     init: function() {
 		this.appendDummyInput()
         .appendField("LED");
         this.appendDummyInput()
             .appendField(new Blockly.FieldDropdown([["F0", "0"], ["F1", "1"], ["F2", "2"], ["F3", "3"]]), "led")
-        this.appendValueInput("r")
-            .setCheck("Number")
-            .appendField("Red");
-        this.appendValueInput("g")
-            .setCheck("Number")
-            .appendField("Green");
-        this.appendValueInput("b")
-            .setCheck("Number")
-            .appendField("Blue");
+        this.appendValueInput("colour")
+            .setCheck("Colour")
+            .appendField("Colour");
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
@@ -22,15 +16,20 @@ Blockly.Blocks['rgb_led'] = {
     }
 };
 
-Blockly.JavaScript['rgb_led'] = function(block) {
+function cutHex(h) {return (h.charAt(0)=="#") ? h.substring(1,7):h}
+function hexToR(h) {return parseInt((cutHex(h)).substring(0,2),16)}
+function hexToG(h) {return parseInt((cutHex(h)).substring(2,4),16)}
+function hexToB(h) {return parseInt((cutHex(h)).substring(4,6),16)}
+
+Blockly.JavaScript['led'] = function(block) {
     var led = block.getFieldValue('led');
-    var r = Blockly.JavaScript.valueToCode(this, 'r',
-        Blockly.JavaScript.ORDER_ASSIGNMENT) || '255';
-    var g = Blockly.JavaScript.valueToCode(this, 'g',
-        Blockly.JavaScript.ORDER_ASSIGNMENT) || '255';
-    var b = Blockly.JavaScript.valueToCode(this, 'b',
-        Blockly.JavaScript.ORDER_ASSIGNMENT) || '255';
-    //var code = "fpga.led("+ led + ','+ r +',' + g + ',' + b +");\n";
+    var colour = Blockly.JavaScript.valueToCode(this, 'colour',
+        Blockly.JavaScript.ORDER_ASSIGNMENT) || '#000000';
+	color = color.replace(/'/g,"");
+	console.log(color);
+	var b = hexToB(color);
+	var g = hexToG(color);
+	var r = hexToR(color);
     var code = 
     "var url = 'fpga/api/call/led';\n" + 
     "var xhr = new XMLHttpRequest();\n" +
