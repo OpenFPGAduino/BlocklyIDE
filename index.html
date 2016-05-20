@@ -39,7 +39,8 @@
     <script src="js/led.js"></script>
     <script src="js/rgb_led.js"></script>
     <script src="js/wait.js"></script>
-
+	<script src="js/temperate.js"></script>
+    <script src="js/moisture.js"></script>
 </head>
 
 <body>
@@ -390,24 +391,30 @@ Configurations
     <category name="Functions" custom="PROCEDURE" colour="290"></category>
     <sep></sep>
     <category name="Openfpgaduino" colour="260">
-      <block type="led"></block>
+      <block type="led">
+          <value name="colour">
+          	<shadow type="colour_picker"></shadow>
+          </value>
+      </block>
       <block type="rgb_led">
         <value name="r">
-          <block type="math_number">
+          <shadow type="math_number">
             <title name="NUM">255</title>
-          </block>
+          </shadow>
         </value>
         <value name="g">
-          <block type="math_number">
+          <shadow type="math_number">
             <title name="NUM">255</title>
-          </block>
+          </shadow>
         </value>
         <value name="b">
-          <block type="math_number">
+          <shadow type="math_number">
             <title name="NUM">255</title>
-          </block>
+          </shadow>
         </value>
       </block>
+      <block type="temperate"></block>
+      <block type="moisture"></block>
     </category>
   </xml>
 
