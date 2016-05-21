@@ -19,5 +19,6 @@ var TEXT = {
 };
 
 var TITLE = {
-    
+  "textSave": "保存程序",    
+  "textRun": "运行程序"
 }

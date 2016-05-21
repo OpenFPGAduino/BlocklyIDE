@@ -20,5 +20,6 @@ var TEXT = {
 };
 
 var TITLE = {
-    
+  "textSave": "save the program",
+   "textRun": "run the program"
 }

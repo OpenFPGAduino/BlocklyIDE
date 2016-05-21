@@ -61,5 +61,8 @@ var load_language = function () {
 	for (var text in TEXT) {
 		document.getElementById(text).textContent = TEXT[text];
 	}
+	for (var title in TITLE) {
+		document.getElementById(title).title = TITLE[title];
+	}
 };
 
