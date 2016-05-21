@@ -1,4 +1,4 @@
-Blockly.Blocks['temperate'] = {
+Blockly.Blocks['temperature'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.TEMP_SENSOR);
@@ -13,11 +13,11 @@ Blockly.Blocks['temperate'] = {
   }
 };
 
-Blockly.JavaScript['temperate'] = function(block) {
+Blockly.JavaScript['temperature'] = function(block) {
   var id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
   var code = 
     "funciton() {"	
-    "var url = 'fpga/api/call/am2301_tempeture';\n" + 
+    "var url = 'fpga/api/call/am2301_temperature';\n" + 
     "var xhr = new XMLHttpRequest();\n" +
     "var post = ["+ id +"];\n" +
     "xhr.open('post', url, false);\n" + 
