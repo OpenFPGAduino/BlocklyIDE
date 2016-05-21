@@ -6,13 +6,13 @@ Blockly.Blocks['rgb_led'] = {
             .appendField(new Blockly.FieldDropdown([["F0", "0"], ["F1", "1"], ["F2", "2"], ["F3", "3"]]), "led")
         this.appendValueInput("r")
             .setCheck("Number")
-            .appendField("Red");
+            .appendField(Blockly.Msg.LED_R);
         this.appendValueInput("g")
             .setCheck("Number")
-            .appendField("Green");
+            .appendField(Blockly.Msg.LED_G);
         this.appendValueInput("b")
             .setCheck("Number")
-            .appendField("Blue");
+            .appendField(Blockly.Msg.LED_B);
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);

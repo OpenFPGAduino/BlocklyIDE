@@ -9,10 +9,6 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script>
-    var language = document.documentElement.lang;
-	console.log(language);
-    </script>
     <script src="js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
@@ -31,20 +27,31 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
-  
-    <script src="blockly/blockly_compressed.js"></script>
+  <script>
+  var debug = true;
+  function debuginf(string) {
+      if (debug == true) {
+          console.log(string);
+      }
+  }
+  </script>
+	<script src="blockly/blockly_compressed.js"></script>
     <script src="blockly/blocks_compressed.js"></script>
     <script src="blockly/javascript_compressed.js"></script>
-    <script src="blockly/msg/js/en.js"></script>
     <script src="js/led.js"></script>
     <script src="js/rgb_led.js"></script>
     <script src="js/wait.js"></script>
 	<script src="js/temperate.js"></script>
     <script src="js/moisture.js"></script>
+    <script src="js/language.js"></script>
 </head>
 
 <body>
     <img id=broadpic alt="">
+    <select id="languageMenu">
+      <option>English</option>
+      <option>中文</option>
+    </select>
     <div id="IDE" class="">
         <a href="#savedialog" role="button" class="btn" data-toggle="modal" title="save the program">save</a>
         <span onclick="runCode()" class="btn btn-success" title="run the program">
@@ -71,8 +78,9 @@ Configurations
         <span onclick="fpga()" class="btn btn-info" title="go to the fpga designer">
     FPGAdesigner
   </span>
+
     </div>
-    </span>
+</span>
 
   <div id="blocklyDiv" style="height: 480px;"></div>
 
@@ -523,13 +531,6 @@ Configurations
     Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),
                                workspace);
 
-    function showCode() {
-      // Generate JavaScript code and display it.
-      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-      var code = Blockly.JavaScript.workspaceToCode(workspace);
-      alert(code);
-    }
-
     function runCode() {
       // Generate JavaScript code and run it.
       window.LoopTrap = 1000;
@@ -537,6 +538,7 @@ Configurations
           'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
       var code = Blockly.JavaScript.workspaceToCode(workspace);
       Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+	  debuginf(code);
       try {
         eval(code);
       } catch (e) {
@@ -544,11 +546,11 @@ Configurations
       }
     }
     
-     function saveXML() {
+     function save() {
       // Generate XML code and display it.
       var dom = Blockly.Xml.workspaceToDom(workspace);
       var xml = Blockly.Xml.domToPrettyText(dom);
-      alert(xml);
+      debuginf(xml);
     }
   </script>
 
@@ -596,7 +598,7 @@ Configurations
             <div class="modal-body">
                 <div class="input-group">
                     <input id="dialog_filename" type="text" class="form-control" placeholder="filename">
-                    <span class="input-group-addon">.c</span>
+                    <span class="input-group-addon">.xml</span>
                 </div>
             </div>
             <div class="modal-footer">
@@ -653,14 +655,6 @@ Configurations
                 </div>
             </div>
 
-            <script>
-                var debug = false;
-
-                function debuginf(string) {
-                    if (debug == true) {
-                        console.log(string);
-                    }
-                }
 
                 function ajax_rest_post(url, arg1, arg2) {
                     var xhr = new XMLHttpRequest();
@@ -897,7 +891,66 @@ Configurations
                     load_config_list();
                     load_example_list();
                 }
-            </script>
+
+<!--/**
+ * Save the blocks and reload with a different language.
+ */
+changeLanguage = function() {
+  // Store the blocks for the duration of the reload.
+  // This should be skipped for the index page, which has no blocks and does
+  // not load Blockly.
+  // MSIE 11 does not support sessionStorage on file:// URLs.
+  if (typeof Blockly != 'undefined' && window.sessionStorage) {
+    var xml = Blockly.Xml.workspaceToDom(Code.workspace);
+    var text = Blockly.Xml.domToText(xml);
+    window.sessionStorage.loadOnceBlocks = text;
+  }
+
+  var languageMenu = document.getElementById('languageMenu');
+  var newLang = encodeURIComponent(
+      languageMenu.options[languageMenu.selectedIndex].value);
+  var search = window.location.search;
+  if (search.length <= 1) {
+    search = '?lang=' + newLang;
+  } else if (search.match(/[?&]lang=[^&]*/)) {
+    search = search.replace(/([?&]lang=)[^&]*/, '$1' + newLang);
+  } else {
+    search = search.replace(/\?/, '?lang=' + newLang + '&');
+  }
+
+  window.location = window.location.protocol + '//' +
+      window.location.host + window.location.pathname + search;
+};
+
+/**
+ * Lookup for names of supported languages.  Keys should be in ISO 639 format.
+ */
+    LANGUAGE_NAME = {
+      'en': 'English',
+      'zh-hans': '简体中文',
+    };
+
+  // Sort languages alphabetically.
+  var languages = [];
+  for (var lang in LANGUAGE_NAME) {
+    languages.push([LANGUAGE_NAME[lang], lang]);
+  }
+  
+  var languageMenu = document.getElementById('languageMenu');
+  languageMenu.options.length = 0;
+  for (var i = 0; i < languages.length; i++) {
+    var tuple = languages[i];
+    var lang = tuple[tuple.length - 1];
+    var option = new Option(tuple[0], lang);
+    if (lang == LANG) {
+      option.selected = true;
+    }
+    languageMenu.options.add(option);
+  }
+  languageMenu.addEventListener('change', changeLanguage, true);
+  
+  
+  LANG = getLang();-->
 
 </body>
 

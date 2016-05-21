@@ -2,9 +2,9 @@ Blockly.Blocks['wait'] = {
   init: function() {
     this.appendValueInput("seconds")
         .setCheck("Number")
-        .appendField("wait");
+        .appendField(Blockly.Msg.WAIT);
     this.appendDummyInput()
-        .appendField("Seconds");
+        .appendField(Blockly.Msg.WAIT_SECONDS);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

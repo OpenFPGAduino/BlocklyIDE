@@ -1,7 +1,7 @@
 Blockly.Blocks['temperate'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Temperate sensor");
+        .appendField(Blockly.Msg.TEMP_SENSOR);
     this.appendValueInput("ID")
         .setCheck("Number")
         .appendField("ID");

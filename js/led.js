@@ -6,7 +6,7 @@ Blockly.Blocks['led'] = {
             .appendField(new Blockly.FieldDropdown([["F0", "0"], ["F1", "1"], ["F2", "2"], ["F3", "3"]]), "led")
         this.appendValueInput("colour")
             .setCheck("Colour")
-            .appendField("Colour");
+            .appendField(Blockly.Msg.LED_COLOUR);
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);

@@ -1,7 +1,7 @@
 Blockly.Blocks['moisture'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Moisture sensor");
+        .appendField(Blockly.Msg.MOIS_SENSOR);
     this.appendValueInput("ID")
         .setCheck("Number")
         .appendField("ID");
