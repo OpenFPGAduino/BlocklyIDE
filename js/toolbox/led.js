@@ -25,11 +25,10 @@ Blockly.JavaScript['led'] = function(block) {
     var led = block.getFieldValue('led');
     var colour = Blockly.JavaScript.valueToCode(this, 'colour',
         Blockly.JavaScript.ORDER_ASSIGNMENT) || '#000000';
-	color = color.replace(/'/g,"");
-	console.log(color);
-	var b = hexToB(color);
-	var g = hexToG(color);
-	var r = hexToR(color);
+	colour = colour.replace(/'/g,"");
+	var b = hexToB(colour);
+	var g = hexToG(colour);
+	var r = hexToR(colour);
     var code = 
     "var url = 'fpga/api/call/led';\n" + 
     "var xhr = new XMLHttpRequest();\n" +
