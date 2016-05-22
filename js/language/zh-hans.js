@@ -20,5 +20,13 @@ var TEXT = {
 
 var TITLE = {
   "textSave": "保存程序",    
-  "textRun": "运行程序"
+  "textRun": "运行程序",
+   "textStop": "停止程序",
+   "textStep": "单步执行程序",
+   "textDoc" : "显示文档",
+   "textReboot": "重启开发板",
+   "textConf": "改变开发板配置",
+   "textFPGA":"跳转到FPGA设计工具",
+   "textClearError":"清除错误日志",
+   "textClearConsole":"清楚终端日志"
 }

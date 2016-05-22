@@ -59,10 +59,16 @@ var load_language = function () {
 	}
 
 	for (var text in TEXT) {
-		document.getElementById(text).textContent = TEXT[text];
+		var dom = document.getElementById(text);
+		if (dom != null) {
+			dom.textContent = TEXT[text];
+		}
 	}
 	for (var title in TITLE) {
-		document.getElementById(title).title = TITLE[title];
+		var dom = document.getElementById(title);
+		if (dom != null) {
+			dom.title = TITLE[title];
+		}
 	}
 };
 

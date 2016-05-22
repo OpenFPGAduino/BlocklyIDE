@@ -48,18 +48,18 @@
     <div id="IDE" class="">
         <a id="textSave" href="#savedialog" role="button" class="btn" data-toggle="modal"></a>
         <span id="textRun" onclick="runCode()" class="btn btn-success"></span>
-        <span id="textStop" onclick="stop()" class="btn btn-warning" title="stop the progrtam"></span>
-        <span id="textStep" onclick="step()" class="btn btn-danger" title="step run the program"></span>
-        <a id="textDoc" href="docs/index.html" role="button" class="btn btn-info" data-toggle="modal" title="show the docs"></a>
-        <span id="textReboot" onclick="saveXML()" class="btn btn-danger" title="reboot the broad"></span>
+        <span id="textStop" onclick="stop()" class="btn btn-warning" ></span>
+        <span id="textStep" onclick="step()" class="btn btn-danger" ></span>
+        <a id="textDoc" href="docs/index.html" role="button" class="btn btn-info" data-toggle="modal"></a>
+        <span id="textReboot" onclick="saveXML()" class="btn btn-danger"></span>
         <span>
         <div class="btn-group">
-        <button id= "textConf" type="button" class="btn btn-primary" title="change the broad configuration"></button>
+        <button id= "textConf" type="button" class="btn btn-primary"></button>
         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
             <span class="caret"></span>
         </button>
         <ul id=version_list class="dropdown-menu" role="menu"></ul>
-        <span id="textFPGA" onclick="fpga()" class="btn btn-info" title="go to the fpga designer"></span>
+        <!--<span id="textFPGA" onclick="fpga()" class="btn btn-info"></span>-->
         </div>
         </span>
 
@@ -69,7 +69,7 @@
     <div id=Ex>
     </div>
     <div class="panel panel-default">
-      <span id="textClearError" onclick="clean_error()" class="btn btn-warning" title="clear the error log"></span>
+      <span id="textClearError" onclick="clean_error()" class="btn btn-warning"></span>
       <div class="panel-heading">
         <a data-toggle="collapse" data-parent="#accordion" href="#error">
           <div class="alert alert-error" role="alert"><b id="textError"></b>
@@ -83,7 +83,7 @@
     <div>
 
       <div class="panel panel-default">
-        <span id="textClearConsole" onclick="clean_console()" class="btn btn-warning" title="clear the console log"></span>
+        <span id="textClearConsole" onclick="clean_console()" class="btn btn-warning"></span>
         <div class="panel-heading">
           <a data-toggle="collapse" data-parent="#accordion" href="#console">
             <div class="alert alert-info" role="alert"><b id="textConsole"></b>
@@ -132,6 +132,30 @@
         </div>
 
             <script>
+                function ajax_rest_json_post(url, json) {
+                    var xhr = new XMLHttpRequest();
+                    var post;
+                    xhr.open("post", url, false);
+                    xhr.setRequestHeader("Content-Type", "application/json")
+                    xhr.send(JSON.stringify(josn));
+                    debuginf(xhr.status);
+                }
+                
+                function ajax_rest_post(url, arg1, arg2) {
+                    var xhr = new XMLHttpRequest();
+                    var post;
+                    xhr.open("post", url, false);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+                    if (arg1 != undefined)
+                        post = encodeURIComponent("arg1") + "=" + encodeURIComponent(arg1) + "&";
+                    else
+                        post = null;
+                    if (arg2 != undefined)
+                        post += encodeURIComponent("arg2") + "=" + encodeURIComponent(arg2) + "&";
+                    xhr.send(post);
+                    debuginf(xhr.status);
+                }
+              
                 var workspace; 
                 var load_blockly = function()
                 {
@@ -161,30 +185,6 @@
                     var dom = Blockly.Xml.workspaceToDom(workspace);
                     var xml = Blockly.Xml.domToPrettyText(dom);
                     debuginf(xml);
-                }
-                
-                function ajax_rest_json_post(url, json) {
-                    var xhr = new XMLHttpRequest();
-                    var post;
-                    xhr.open("post", url, false);
-                    xhr.setRequestHeader("Content-Type", "application/json")
-                    xhr.send(JSON.stringify(josn));
-                    debuginf(xhr.status);
-                }
-                
-                function ajax_rest_post(url, arg1, arg2) {
-                    var xhr = new XMLHttpRequest();
-                    var post;
-                    xhr.open("post", url, false);
-                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
-                    if (arg1 != undefined)
-                        post = encodeURIComponent("arg1") + "=" + encodeURIComponent(arg1) + "&";
-                    else
-                        post = null;
-                    if (arg2 != undefined)
-                        post += encodeURIComponent("arg2") + "=" + encodeURIComponent(arg2) + "&";
-                    xhr.send(post);
-                    debuginf(xhr.status);
                 }
 
                 function load_config_list() {

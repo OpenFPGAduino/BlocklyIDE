@@ -21,5 +21,13 @@ var TEXT = {
 
 var TITLE = {
   "textSave": "save the program",
-   "textRun": "run the program"
+   "textRun": "run the program",
+   "textStop": "stop the progrtam",
+   "textStep": "step run the program",
+   "textDoc" : "show the docs",
+   "textReboot": "reboot the broad",
+   "textConf": "change the broad configuration",
+   "textFPGA":"go to the fpga designer",
+   "textClearError":"clear the error log",
+   "textClearConsole":"clear the console log"
 }
