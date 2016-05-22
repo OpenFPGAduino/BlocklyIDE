@@ -47,11 +47,11 @@
     <select id="languageMenu"></select>
     <div id="IDE" class="">
         <a id="textSave" href="#savedialog" role="button" class="btn" data-toggle="modal"></a>
-        <span id="textRun" onclick="runCode()" class="btn btn-success"></span>
+        <span id="textRun" onclick="run()" class="btn btn-success"></span>
         <span id="textStop" onclick="stop()" class="btn btn-warning" ></span>
         <span id="textStep" onclick="step()" class="btn btn-danger" ></span>
         <a id="textDoc" href="docs/index.html" role="button" class="btn btn-info" data-toggle="modal"></a>
-        <span id="textReboot" onclick="saveXML()" class="btn btn-danger"></span>
+        <span id="textReboot" onclick="reboot()" class="btn btn-danger"></span>
         <span>
         <div class="btn-group">
         <button id= "textConf" type="button" class="btn btn-primary"></button>
@@ -132,14 +132,33 @@
         </div>
 
             <script>
+                function ajax_rest_json_get(url) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("get", url, false);
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.send();
+                    return (JSON.parse(xhr.responseText));
+                }
+                
                 function ajax_rest_json_post(url, json) {
                     var xhr = new XMLHttpRequest();
                     var post;
                     xhr.open("post", url, false);
-                    xhr.setRequestHeader("Content-Type", "application/json")
-                    xhr.send(JSON.stringify(josn));
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.send(JSON.stringify(json));
+                    debuginf(xhr.status);
+                    return JSON.parse(xhr.responseText);
+                }
+                
+                function ajax_rest_json_delete(url, json) {
+                    var xhr = new XMLHttpRequest();
+                    var post;
+                    xhr.open("delete", url, false);
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.send(JSON.stringify(json));
                     debuginf(xhr.status);
                 }
+                
                 
                 function ajax_rest_post(url, arg1, arg2) {
                     var xhr = new XMLHttpRequest();
@@ -167,26 +186,6 @@
                       Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),
                                                 workspace);
                 }
-                function runCode() {
-                  // Generate JavaScript code and run it.
-                  window.LoopTrap = 1000;
-                  Blockly.JavaScript.INFINITE_LOOP_TRAP =
-                      'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
-                  var code = Blockly.JavaScript.workspaceToCode(workspace);
-                  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-                debuginf(code);
-                  try {
-                    eval(code);
-                  } catch (e) {
-                    alert(e);
-                  }
-                }
-                function save() {
-                    // Generate XML code and display it.
-                    var dom = Blockly.Xml.workspaceToDom(workspace);
-                    var xml = Blockly.Xml.domToPrettyText(dom);
-                    debuginf(xml);
-                }
 
                 function load_config_list() {
                     var xhr = new XMLHttpRequest();
@@ -210,62 +209,55 @@
                 }
 
                 function load_example_list() {
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("get", "load_example", false);
-                    xhr.send();
-                    var examplelist = xhr.responseText;
-                    var list = examplelist.split(',');
-                    var html_list = "";
+                    var list = ajax_rest_json_get("http://localhost:8080/db/list/example");
                     debuginf(list);
+                    if (list == null ) return;
+                    var html_list = "";
                     for (var index in list) {
                         debuginf(list[index]);
-                        var name = list[index].split('.')[0];
-                        var ext = list[index].split('.')[1];
-                        if (ext == 'c') {
-                            html_list += "<span id=" + name + " onmousedown='mousedown(event)' onmouseup='mouseup(event)' class='btn btn-info'>" + name + "</span>";
-                        }
+                        var name = list[index].file;
+                        html_list += "<span id=" + name + " onmousedown='mousedown(event)' onmouseup='mouseup(event)' class='btn btn-info'>" + name + "</span>";
                     }
                     document.getElementById("Ex").innerHTML = html_list;
                 }
-
-                function is_function_type(str) {
-                    var re = new RegExp("\\.*\\s([^\\(\\s]+)\\(.*\\);");
-                    return str.match(re);
-                }
-
-                function is_comments(str) {
-                    var re = new RegExp(".*//(.*)");
-                    return str.match(re);
-                }
-				
+                
                 // event handle for webpage
-                function save() {
-                    var code = editor.getValue();
-                    var file = document.getElementById("dialog_filename").value;
-                    debuginf("save");
-                    if (file != "") {
-                        ajax_rest_post("save", file, code);
-                        load_example_list();
-                        return true;
-                    } else
-                        return false;
-                }
-
                 function run() {
-                    var code = editor.getValue();
-                    debuginf("run");
-                    debuginf(code);
-                    ajax_rest_post("run", code);
+                  // Generate JavaScript code and run it.
+                  window.LoopTrap = 1000;
+                  Blockly.JavaScript.INFINITE_LOOP_TRAP =
+                      'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
+                  var code = Blockly.JavaScript.workspaceToCode(workspace);
+                  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+                  debuginf(code);
+                  try {
+                    eval(code);
+                  } catch (e) {
+                    alert(e);
+                  }
                 }
-
+                function save() {
+                    // Generate XML code and display it.
+                    var dom = Blockly.Xml.workspaceToDom(workspace);
+                    var xml = Blockly.Xml.domToPrettyText(dom);
+                    var file = document.getElementById("dialog_filename").value;
+                    debuginf(xml);
+                    var json = {
+                        file: file,
+                        xml: xml
+                    }
+                    ajax_rest_json_post("http://localhost:8080/db/add/example", json);
+                    load_example_list();
+                }
+                
                 function stop() {
-                    debuginf("stop");
-                    ajax_rest_post("stop");
+                    // debuginf("stop");
+                    // ajax_rest_post("stop");
                 }
 
                 function reboot() {
                     debuginf("reboot");
-                    ajax_rest_post("reboot");
+                    ajax_rest_get("reboot");
                 }
 
                 function configrations(event) {
@@ -283,15 +275,9 @@
                 function load_example(event) {
                     var example = event.srcElement.innerText;
                     debuginf(example);
-                    var file = example + '.c';
                     debuginf("load code");
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("get", "program/" + file, false);
-                    xhr.send();
-                    var get = xhr.responseText;
+                    ajax_rest_json_post("http://localhost:8080/db/query/example","")
                     debuginf(get);
-                    editor.setValue(get);
-                    editor.clearSelection();
                 }
 
 
@@ -363,9 +349,10 @@
                 }
 
                 window.onload = function() {
+                    load_example_list();
                     load_blockly();
                     //load_config_list();
-                    //load_example_list();
+
                 }
 
                 </script>
