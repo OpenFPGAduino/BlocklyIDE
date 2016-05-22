@@ -27,8 +27,9 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
+  <title>Opnefpgaduino Blockly IDE</title>
   <script>
-  var debug = true;
+  var debug = false;
   function debuginf(string) {
       if (debug == true) {
           console.log(string);
@@ -137,6 +138,7 @@
                     xhr.open("get", url, false);
                     xhr.setRequestHeader("Content-Type", "application/json");
                     xhr.send();
+                    debuginf(xhr.responseText);
                     return (JSON.parse(xhr.responseText));
                 }
                 
@@ -146,8 +148,8 @@
                     xhr.open("post", url, false);
                     xhr.setRequestHeader("Content-Type", "application/json");
                     xhr.send(JSON.stringify(json));
-                    debuginf(xhr.status);
-                    return JSON.parse(xhr.responseText);
+                    debuginf(xhr.responseText);
+                    return (JSON.parse(xhr.responseText));
                 }
                 
                 function ajax_rest_json_delete(url, json) {
@@ -209,7 +211,7 @@
                 }
 
                 function load_example_list() {
-                    var list = ajax_rest_json_get("http://localhost:8080/db/list/example");
+                    var list = ajax_rest_json_get("/db/list/example");
                     debuginf(list);
                     if (list == null ) return;
                     var html_list = "";
@@ -246,7 +248,7 @@
                         file: file,
                         xml: xml
                     }
-                    ajax_rest_json_post("http://localhost:8080/db/add/example", json);
+                    ajax_rest_json_post("/db/add/example", json);
                     load_example_list();
                 }
                 
@@ -276,8 +278,13 @@
                     var example = event.srcElement.innerText;
                     debuginf(example);
                     debuginf("load code");
-                    ajax_rest_json_post("http://localhost:8080/db/query/example","")
-                    debuginf(get);
+                    var query = {"file": { "$eq" : example}}
+                    var json = ajax_rest_json_post("/db/query/example", query)
+                    debuginf(json[0].xml);
+                    debuginf(document.getElementById('startBlocks'));
+                    workspace.clear();
+                    Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(json[0].xml),
+                        workspace);
                 }
 
 
@@ -305,7 +312,8 @@
                     file = document.getElementById("pop_message").innerText;
                     debuginf("do delete code");
                     debuginf(file);
-                    ajax_rest_post("delete", file);
+                    var json = {file: file}
+                    ajax_rest_json_delete("/db/remove/example",json);
                     load_example_list();
                 }
 
@@ -704,99 +712,20 @@
     </category>
   </xml>
 
-    <!-- Blockly initial code -->
-<xml id="startBlocks" style="display: none">
-  <block type="controls_repeat_ext" id="6X!yQi-9Y*,*Rg*]Mn:9" x="84" y="98">
+<xml id=startBlocks>
+  <block type="controls_repeat_ext" x="120" y="133">
     <value name="TIMES">
-      <block type="math_number" id="`+7#Js@(:sJv%/}SG^J?">
-        <field name="NUM">3</field>
-      </block>
+      <shadow type="math_number">
+        <field name="NUM">10</field>
+      </shadow>
     </value>
     <statement name="DO">
-      <block type="rgb_led" id="*=4RJ{}oGXB/[TTt=MNm">
-        <field name="led">1</field>
-        <value name="r">
-          <block type="math_number" id="fLmHOFx7Ipk8,MjD]Jlt">
-            <field name="NUM">255</field>
-          </block>
+      <block type="text_print" inline="false">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">Openfpgaduino</field>
+          </shadow>
         </value>
-        <value name="g">
-          <block type="math_number" id="D/R}nES:u8/usACh@fe;">
-            <field name="NUM">0</field>
-          </block>
-        </value>
-        <value name="b">
-          <block type="math_number" id="UAe|Rbm-J}3H*t)G;*WP">
-            <field name="NUM">0</field>
-          </block>
-        </value>
-        <next>
-          <block type="wait" id=")iud1+8*JL^fqN11]_Y%">
-            <value name="seconds">
-              <block type="math_number" id="NZ@G+87cdzI`0?7Ff.3K">
-                <field name="NUM">1</field>
-              </block>
-            </value>
-            <next>
-              <block type="rgb_led" id="5M=l.#W!vhvpy%gjZpOs">
-                <field name="led">1</field>
-                <value name="r">
-                  <block type="math_number" id="`?}eN7Kd):2gQPL)`[cV">
-                    <field name="NUM">0</field>
-                  </block>
-                </value>
-                <value name="g">
-                  <block type="math_number" id="X*Z*6wK.1EMq6A)q?|!=">
-                    <field name="NUM">255</field>
-                  </block>
-                </value>
-                <value name="b">
-                  <block type="math_number" id="2{ZA2h*10FlwPApvbZVi">
-                    <field name="NUM">0</field>
-                  </block>
-                </value>
-                <next>
-                  <block type="wait" id="^lJ_(bg*4syWo1jru]7F">
-                    <value name="seconds">
-                      <block type="math_number" id="4Pz{ux4ZS`?NXMyb~/bd">
-                        <field name="NUM">1</field>
-                      </block>
-                    </value>
-                    <next>
-                      <block type="rgb_led" id="|j=pec5W+l%vI9#uQvfn">
-                        <field name="led">1</field>
-                        <value name="r">
-                          <block type="math_number" id="/H.HG:8e,*SDx=[({DT1">
-                            <field name="NUM">0</field>
-                          </block>
-                        </value>
-                        <value name="g">
-                          <block type="math_number" id="phF.l!:cskzhFncZDp[J">
-                            <field name="NUM">0</field>
-                          </block>
-                        </value>
-                        <value name="b">
-                          <block type="math_number" id="mEDv!8Qfo[6oSw:4.h([">
-                            <field name="NUM">255</field>
-                          </block>
-                        </value>
-                        <next>
-                          <block type="wait" id="8c-n?KI]yWP{h%kF}S,a">
-                            <value name="seconds">
-                              <block type="math_number" id="2jxR8o!loD(HltJ#B6or">
-                                <field name="NUM">1</field>
-                              </block>
-                            </value>
-                          </block>
-                        </next>
-                      </block>
-                    </next>
-                  </block>
-                </next>
-              </block>
-            </next>
-          </block>
-        </next>
       </block>
     </statement>
   </block>
