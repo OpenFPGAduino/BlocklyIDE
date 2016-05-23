@@ -1,14 +1,16 @@
 all:
 	rm -rf blocklyide
 	mkdir -p blocklyide/blockly
-	rsync -rp blockly/blockly_compressed.js blocklyide/blockly/
-	rsync -rp blockly/blocks_compressed.js blocklyide/blockly/
-	rsync -rp blockly/javascript_compressed.js blocklyide/blockly/
-	rsync -rp blockly/media blocklyide/blockly/media
-	rsync -rp blockly/msg blocklyide/blockly/msg
-	rsync -rp js blocklyide/
-	rsync -rp css blocklyide/
-	rsync -rp index.html blocklyide/
+	rsync -aR blockly/demos/interpreter/acorn_interpreter.js blocklyide
+	rsync -aR blockly/demos/code/msg/ blocklyide
+	rsync -aR blockly/blockly_compressed.js blocklyide
+	rsync -aR blockly/blocks_compressed.js blocklyide
+	rsync -aR blockly/javascript_compressed.js blocklyide
+	rsync -aR blockly/media blocklyide
+	rsync -aR blockly/msg/js blocklyide
+	rsync -aR js blocklyide
+	rsync -aR css blocklyide
+	rsync -aR index.html blocklyide
 	
 clean:
 	rm -rf blocklyide
