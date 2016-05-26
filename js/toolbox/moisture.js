@@ -15,13 +15,6 @@ Blockly.Blocks['moisture'] = {
 
 Blockly.JavaScript['moisture'] = function(block) {
   var id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 
-    "funciton() {"	
-    "var url = 'fpga/api/call/am2301_moisture';\n" + 
-    "var xhr = new XMLHttpRequest();\n" +
-    "var post = ["+ id +"];\n" +
-    "xhr.open('post', url, false);\n" + 
-    "xhr.setRequestHeader('Content-Type', 'application/json');\n" +
-    "return xhr.send(JSON.stringify(post));}"
+  var code = "ajax_post('fpga/api/call/am2301_moisture', ["+ id+"])"
   return [code, Blockly.JavaScript.ORDER_NONE];
-};// JavaScript Document
+};
