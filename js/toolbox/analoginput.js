@@ -18,6 +18,6 @@ Blockly.JavaScript['analoginput'] = function(block) {
   var ch = block.getFieldValue('CH');
   var id = block.getFieldValue('ID');
   var code = 
-    "ajax_post('fpga/api/call/ain_"+ch+"', ["+ id+"])"
+    "ajax_post('/fpga/api/call/ain_"+ch+"', ["+ id+"])"
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
