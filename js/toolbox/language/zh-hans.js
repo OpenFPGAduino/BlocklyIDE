@@ -6,4 +6,4 @@ Blockly.Msg.WAIT       = "等待";
 Blockly.Msg.WAIT_SECONDS =  "秒";
 Blockly.Msg.TEMP_SENSOR = "温度传感器";
 Blockly.Msg.MOIS_SENSOR = "湿度传感器";
-Blockly.Msg.ANALOGIN = "";
+Blockly.Msg.ANALOGIN = "模拟输入通道";
