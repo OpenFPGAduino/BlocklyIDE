@@ -7,6 +7,7 @@ Blockly.Msg.WAIT_SECONDS =  "Seconds";
 Blockly.Msg.TEMP_SENSOR = "Temperate sensor";
 Blockly.Msg.MOIS_SENSOR = "Moisture sensor";
 Blockly.Msg.ANALOGIN = "Analog Chanel";
+Blockly.Msg.ANALOGINIT = "Initial Analog Channel";
 		
 
 
