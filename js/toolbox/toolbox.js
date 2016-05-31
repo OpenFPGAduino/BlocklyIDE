@@ -5,7 +5,7 @@ function ajax_post(url, json) {
     var ret = xhr.send(JSON.stringify(json));
     if(typeof variable !== "undefined" && variable !== null) {
     	return JSON.parser(ret);
-    else
+    } else
 	return ret;
 }
 
