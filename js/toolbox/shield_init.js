@@ -1,7 +1,7 @@
 Blockly.Blocks['shield_init'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("shield_init");
+        .appendField(Blockly.Msg.SHIELDINIT);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(260);
@@ -12,6 +12,6 @@ Blockly.Blocks['shield_init'] = {
 
 Blockly.JavaScript['shield_init'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
-  var code = "ajax_post('/fpga/api/call/shield_ctrl_init', [])"
+  var code = "ajax_post('/fpga/api/call/shield_ctrl_init', [])";
   return code;
 };
