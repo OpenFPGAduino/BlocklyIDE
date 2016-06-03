@@ -5,7 +5,6 @@ if (!window.localStorage.getItem("language")) {
 document.documentElement.lang = window.localStorage.getItem("language");
 var language = document.documentElement.lang;
 document.write('<script src="blockly/msg/js/' + language + '.js"></script>\n');
-document.write('<script src="blockly/demos/code/msg/' + language + '.js"></script>\n');
 document.write('<script src="js/toolbox/language/' + language + '.js"></script>\n');
 document.write('<script src="js/language/' + language + '.js"></script>\n');
 
@@ -45,7 +44,7 @@ var load_language = function () {
     languageMenu.addEventListener('change', changeLanguage, true);
 
 	var categories = ['catLogic', 'catLoops', 'catMath', 'catText', 'catLists',
-		'catColour', 'catVariables', 'catFunctions'];
+		'catColour', 'catVariables', 'catFunctions','catChart'];
 	for (var i = 0, cat; cat = categories[i]; i++) {
 		document.getElementById(cat).setAttribute('name', MSG[cat]);
 	}
