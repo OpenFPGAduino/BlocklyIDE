@@ -9,3 +9,4 @@ Blockly.Msg.MOIS_SENSOR = "湿度传感器";
 Blockly.Msg.ANALOGIN = "模拟输入通道";
 Blockly.Msg.ANALOGINIT = "初始化模拟输入";
 Blockly.Msg.SHIELDINIT = "初始化扩展口";	
+Blockly.Msg.DIGITALOUTPUT = "数字输出端口";	

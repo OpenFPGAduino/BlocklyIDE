@@ -17,6 +17,6 @@ function ajax_get(url) {
     return JSON.parser(ret);
 }
 
-var toolbox = ["wait","led", "rgb_led", "temperature","moisture", "analoginput", "analoginit","shield_init"];
+var toolbox = ["wait","led", "rgb_led", "temperature","moisture", "analoginput", "analoginit","shield_init","digitaloutput"];
 for( i in toolbox)
 document.write('<script src="js/toolbox/' + toolbox[i] + '.js"></script>\n');
