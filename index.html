@@ -803,6 +803,8 @@
       </block>  
     </category>
     <category id="catChart" colour="60">
+       <block type="plot">
+      </block>  
     </category>
   </xml>
 
@@ -830,36 +832,60 @@
 <canvas id="myChart" width="400" height="400"></canvas>
 <script>
 var ctx = document.getElementById("myChart");
-var data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
-    datasets: [
-        {
-            label: "My First dataset",
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: "rgba(75,192,192,0.4)",
-            borderColor: "rgba(75,192,192,1)",
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: "rgba(75,192,192,1)",
-            pointBackgroundColor: "#fff",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(75,192,192,1)",
-            pointHoverBorderColor: "rgba(220,220,220,1)",
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40,20],
-        }
-    ]
-};
+var datasets =  [];
 var myLineChart = new Chart(ctx, {
     type: 'line',
-    data: data,
+    data: {
+       datasets : datasets
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                type: 'linear',
+                position: 'bottom'
+            }]
+        }
+    }
 });
+function plotxy (name, x, y, color) 
+{
+    var data = [];
+  for(var i= 0; i<y.length;i++)
+  {
+    data.push({y:y[i],x:x[i]})
+  }
+  dataset = {
+    label:name,
+    data:data,
+    borderColor: color,
+  }
+
+  datasets.push(dataset);
+  myLineChart.update();
+}
+function plot(name, y, color) 
+{
+  var data = [];
+  for(var i= 0;i<y.length;i++)
+  {
+    data.push({y:y[i],x:i})
+  }
+  dataset = {
+    label:name,
+    data:data,
+    borderColor: color,
+  }
+    console.log(data)
+  datasets.push(dataset);
+  myLineChart.update();
+}
+function plotclean()
+{
+  datasets = [];
+  myLineChart.update();
+}
+plot("lizhizhou", [1,2,3,2,1], "rgba(0,0,192,1)")
+plot("ababas", [65, 59, 80, 81, 56, 55, 40], "rgba(75,192,192,1)")
 </script>
 
 </html>
