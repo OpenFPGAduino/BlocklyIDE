@@ -805,6 +805,8 @@
     <category id="catChart" colour="60">
        <block type="plot">
       </block>  
+       <block type="plotclean">
+      </block>  
     </category>
   </xml>
 
@@ -812,7 +814,7 @@
   <block type="controls_repeat_ext" x="120" y="133">
     <value name="TIMES">
       <shadow type="math_number">
-        <field name="NUM">10</field>
+        <field name="NUM">2</field>
       </shadow>
     </value>
     <statement name="DO">
@@ -830,62 +832,6 @@
 </body>
 
 <canvas id="myChart" width="400" height="400"></canvas>
-<script>
-var ctx = document.getElementById("myChart");
-var datasets =  [];
-var myLineChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-       datasets : datasets
-    },
-    options: {
-        scales: {
-            xAxes: [{
-                type: 'linear',
-                position: 'bottom'
-            }]
-        }
-    }
-});
-function plotxy (name, x, y, color) 
-{
-    var data = [];
-  for(var i= 0; i<y.length;i++)
-  {
-    data.push({y:y[i],x:x[i]})
-  }
-  dataset = {
-    label:name,
-    data:data,
-    borderColor: color,
-  }
-
-  datasets.push(dataset);
-  myLineChart.update();
-}
-function plot(name, y, color) 
-{
-  var data = [];
-  for(var i= 0;i<y.length;i++)
-  {
-    data.push({y:y[i],x:i})
-  }
-  dataset = {
-    label:name,
-    data:data,
-    borderColor: color,
-  }
-    console.log(data)
-  datasets.push(dataset);
-  myLineChart.update();
-}
-function plotclean()
-{
-  datasets = [];
-  myLineChart.update();
-}
-plot("lizhizhou", [1,2,3,2,1], "rgba(0,0,192,1)")
-plot("ababas", [65, 59, 80, 81, 56, 55, 40], "rgba(75,192,192,1)")
-</script>
+<script src="js/chart.js"></script>
 
 </html>
