@@ -1,16 +1,16 @@
 Blockly.Blocks['plot'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Plot");
+        .appendField(Blockly.Msg.PLOT);
     this.appendValueInput("Name")
         .setCheck("String")
-        .appendField("Name");
+        .appendField(Blockly.Msg.PLOTNAME);
     this.appendValueInput("y")
         .setCheck("Array")
-        .appendField("Data");
+        .appendField(Blockly.Msg.PLOTDATA);
     this.appendValueInput("colour")
         .setCheck("Colour")
-        .appendField("colour");
+        .appendField(Blockly.Msg.PLOTCOLOUR);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(60);

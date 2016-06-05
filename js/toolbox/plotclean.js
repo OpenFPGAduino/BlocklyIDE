@@ -1,7 +1,7 @@
 Blockly.Blocks['plotclean'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Plot Clean");
+        .appendField(Blockly.Msg.PLOTCLEAN);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(60);
