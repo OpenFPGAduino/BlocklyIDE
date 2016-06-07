@@ -13,6 +13,16 @@ var myLineChart = new Chart(ctx, {
         }
     }
 });
+
+function get_data_byname(datasets , name)
+{
+    for(i in datasets) {
+        if(datasets[i].name == name)
+            return datasets[i];
+    }
+    return null;
+}
+
 function plotxy (name, x, y, color) 
 {
   var data = [];
@@ -43,6 +53,25 @@ function plot(name, y, color)
     borderColor: color,
   }
   myLineChart.data.datasets.push(dataset);
+  myLineChart.update();
+}
+
+var plot_size = 200;
+function plotp(name, p, color) 
+{
+  var dataset = get_data_byname(myLineChart.data.datasets,name);
+  if (dataset == null)
+  {
+    dataset = {
+        label:name,
+        data: [],
+        fill: false,
+        borderColor: color,
+    }
+  }
+  dataset.data.push(p);
+  if(dataset.data.length > plot_size)
+    dataset.data.shift();
   myLineChart.update();
 }
 function plotclean()
