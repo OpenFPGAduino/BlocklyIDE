@@ -17,7 +17,7 @@ var myLineChart = new Chart(ctx, {
 function get_data_byname(datasets , name)
 {
     for(i in datasets) {
-        if(datasets[i].name == name)
+        if(datasets[i].label == name)
             return datasets[i];
     }
     return null;
@@ -56,7 +56,7 @@ function plot(name, y, color)
   myLineChart.update();
 }
 
-var plot_size = 200;
+var plot_size = 50;
 function plotp(name, p, color) 
 {
   var dataset = get_data_byname(myLineChart.data.datasets,name);
@@ -69,7 +69,8 @@ function plotp(name, p, color)
         borderColor: color,
     }
   }
-  dataset.data.push(p);
+  var point = {y:p,x:dataset.data[dataset.data.length-1].x+1};
+  dataset.data.push(point);
   if(dataset.data.length > plot_size)
     dataset.data.shift();
   myLineChart.update();
@@ -80,7 +81,45 @@ function plotclean()
   myLineChart.update();
   myLineChart.clear(); 
 }
-//plot("lizhizhou", [1,2,3,2,1], "rgba(0,0,192,1)")
-//plot("ababas", [65, 59, 80, 81, 56, 55, 40], "rgba(75,192,192,1)")
+plot("lizhizhou", [1,2,3,2,1], "rgba(0,0,192,1)")
+plot("ababas", [65, 59, 80, 81, 56, 55, 40], "rgba(75,192,192,1)")
 //plotclean()
+setInterval(function(){
+  plotp("lizhizhou",Math.random() * 100,"rgba(0,0,192,1)");
+    plotp("ababas",Math.random() * 100,"rgba(75,192,192,1)");
+},1000);
+
+// var canvas = document.getElementById('myChart'),
+//     ctx = canvas.getContext('2d'),
+//     startingData = {
+//       labels: [1, 2, 3, 4, 5, 6, 7],
+//       datasets: [
+//           {
+//               fillColor: "rgba(220,220,220,0.2)",
+//               strokeColor: "rgba(220,220,220,1)",
+//               pointColor: "rgba(220,220,220,1)",
+//               pointStrokeColor: "#fff",
+//               data: [65, 59, 80, 81, 56, 55, 40]
+//           },
+//           {
+//               fillColor: "rgba(151,187,205,0.2)",
+//               strokeColor: "rgba(151,187,205,1)",
+//               pointColor: "rgba(151,187,205,1)",
+//               pointStrokeColor: "#fff",
+//               data: [28, 48, 40, 19, 86, 27, 90]
+//           }
+//       ]
+//     },
+//     latestLabel = startingData.labels[6];
+
+// // Reduce the animation steps for demo clarity.
+// var myLiveChart = new Chart(ctx).Line(startingData, {animationSteps: 15});
+
+
+// setInterval(function(){
+//   // Add two random numbers for each dataset
+//   myLiveChart.addData([Math.random() * 100, Math.random() * 100], ++latestLabel);
+//   // Remove the first point so we dont just add values forever
+//   myLiveChart.removeData();
+// }, 5000);
 
