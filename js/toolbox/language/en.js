@@ -10,6 +10,7 @@ Blockly.Msg.ANALOGIN = "Analog Chanel";
 Blockly.Msg.ANALOGINIT = "Initial Analog Channel";
 Blockly.Msg.SHIELDINIT = "shield_init";	
 Blockly.Msg.DIGITALOUTPUT = "Digital Port";	
+Blockly.Msg.STEERING = "Steering";	
 Blockly.Msg.PLOT = "Plot";
 Blockly.Msg.PLOTNAME = "Name";
 Blockly.Msg.PLOTDATA = "Data";

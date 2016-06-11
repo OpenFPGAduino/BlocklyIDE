@@ -10,6 +10,7 @@ Blockly.Msg.ANALOGIN = "模拟输入通道";
 Blockly.Msg.ANALOGINIT = "初始化模拟输入";
 Blockly.Msg.SHIELDINIT = "初始化扩展口";	
 Blockly.Msg.DIGITALOUTPUT = "数字输出端口";	
+Blockly.Msg.STEERING = "舵机";	
 Blockly.Msg.PLOT = "绘图";
 Blockly.Msg.PLOTNAME = "名字";
 Blockly.Msg.PLOTDATA = "数据";
