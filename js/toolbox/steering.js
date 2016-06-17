@@ -2,6 +2,9 @@ Blockly.Blocks['steering'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.STEERING);
+    this.appendValueInput("ID")
+        .setCheck("Number")
+        .appendField("ID");
     this.appendDummyInput()
         .appendField(new Blockly.FieldAngle(90), "angle");
     this.setPreviousStatement(true, null);
@@ -13,7 +16,8 @@ Blockly.Blocks['steering'] = {
   }
 };
 Blockly.JavaScript['steering'] = function(block) {
-  var angle_angle = block.getFieldValue('angle');
+  var angle = block.getFieldValue('angle');
+  var id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
   var code = ';\n';
   return code;
 };
