@@ -1,15 +1,17 @@
 Blockly.Blocks['stepmotor'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("StepMotor");
+        .appendField(Blockly.Msg.STEPMOTOR);
     this.appendValueInput("ID")
         .setCheck("Number")
         .appendField("ID");
     this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([["forward", "forward"], ["back", "back"]]), "step");
+        .appendField(new Blockly.FieldDropdown([[Blockly.Msg.STEPMOTORF, "forward"], [Blockly.Msg.STEPMOTORB, "backward"]]), "step");
     this.appendValueInput("step")
         .setCheck("Number")
-        .appendField("Step");
+        .appendField("");
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.STEPMOTORSTEP);    
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
