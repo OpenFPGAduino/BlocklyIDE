@@ -1,4 +1,4 @@
-Blockly.Blocks['plot_push'] = {
+Blockly.Blocks['plotpush'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("PlotP");
@@ -8,21 +8,24 @@ Blockly.Blocks['plot_push'] = {
     this.appendValueInput("Point")
         .setCheck("Number")
         .appendField("Point");
-    this.appendValueInput("colour")
+    this.appendValueInput("Colour")
         .setCheck("Colour")
         .appendField("Colour");
+    this.appendValueInput("Size")
+        .setCheck("Size")
+        .appendField("Number");    
     this.setInputsInline(false);
     this.setColour(65);
     this.setTooltip('');
     this.setHelpUrl('http://www.example.com/');
   }
 };
-Blockly.JavaScript['plot_push'] = function(block) {
+Blockly.JavaScript['plotpush'] = function(block) {
   var name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
   var point = Blockly.JavaScript.valueToCode(block, 'Point', Blockly.JavaScript.ORDER_ATOMIC);
-  var colour = Blockly.JavaScript.valueToCode(block, 'colour', Blockly.JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
-  var code = 'plotp(' + name + ',' + y +',' + colour +');\n';
+  var colour = Blockly.JavaScript.valueToCode(block, 'Colour', Blockly.JavaScript.ORDER_ATOMIC);
+  var size = Blockly.JavaScript.valueToCode(block, 'Size', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'plotp(' + name + ',' + y +',' + colour +',' + size +');\n';
   return code;
 };
    

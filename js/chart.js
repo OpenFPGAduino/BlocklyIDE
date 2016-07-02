@@ -56,8 +56,7 @@ function plot(name, y, color)
   myLineChart.update();
 }
 
-var plot_size = 50;
-function plotp(name, p, color) 
+function plotp(name, p, color, size) 
 {
   var dataset = get_data_byname(myLineChart.data.datasets,name);
   if (dataset == null)
@@ -71,7 +70,7 @@ function plotp(name, p, color)
   }
   var point = {y:p,x:dataset.data[dataset.data.length-1].x+1};
   dataset.data.push(point);
-  if(dataset.data.length > plot_size)
+  if(dataset.data.length > size)
     dataset.data.shift();
   myLineChart.update();
 }
@@ -85,8 +84,8 @@ plot("lizhizhou", [1,2,3,2,1], "rgba(0,0,192,1)")
 plot("ababas", [65, 59, 80, 81, 56, 55, 40], "rgba(75,192,192,1)")
 //plotclean()
 setInterval(function(){
-  plotp("lizhizhou",Math.random() * 100,"rgba(0,0,192,1)");
-    plotp("ababas",Math.random() * 100,"rgba(75,192,192,1)");
+  plotp("lizhizhou",Math.random() * 100,"rgba(0,0,192,1)", 50);
+    plotp("ababas",Math.random() * 100,"rgba(75,192,192,1)", 50);
 },1000);
 
 // var canvas = document.getElementById('myChart'),
