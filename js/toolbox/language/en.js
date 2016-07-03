@@ -20,6 +20,8 @@ Blockly.Msg.PLOTNAME = "Name";
 Blockly.Msg.PLOTDATA = "Data";
 Blockly.Msg.PLOTCOLOUR = "Colour";
 Blockly.Msg.PLOTCLEAN = "Plot Clean";
-
+Blockly.Msg.PLOTP = "PlotPoint";
+Blockly.Msg.PLOTPOINT = "Point";
+Blockly.Msg.PLOTSIZE = "MaxPoints";
 
 

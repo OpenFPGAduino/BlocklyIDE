@@ -1,23 +1,23 @@
 Blockly.Blocks['plotpush'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("PlotP");
+        .appendField(Blockly.Msg.PLOTP);
     this.appendValueInput("NAME")
         .setCheck("String")
-        .appendField("Name");
+        .appendField(Blockly.Msg.PLOTNAME);
     this.appendValueInput("Point")
         .setCheck("Number")
-        .appendField("Point");
+        .appendField(Blockly.Msg.PLOTPOINT);
     this.appendValueInput("Colour")
         .setCheck("Colour")
-        .appendField("Colour");
+        .appendField(Blockly.Msg.PLOTCOLOUR);
     this.appendValueInput("Size")
-        .setCheck("Size")
-        .appendField("Number");    
+        .setCheck("Number")
+        .appendField(Blockly.Msg.PLOTSIZE);    
     this.setInputsInline(false);
     this.setColour(65);
     this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
+    this.setHelpUrl('http://openfpgaduino.github.io/');
   }
 };
 Blockly.JavaScript['plotpush'] = function(block) {
