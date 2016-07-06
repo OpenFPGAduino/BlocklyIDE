@@ -15,6 +15,8 @@ Blockly.Blocks['plotpush'] = {
         .setCheck("Number")
         .appendField(Blockly.Msg.PLOTSIZE);    
     this.setInputsInline(false);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
     this.setColour(65);
     this.setTooltip('');
     this.setHelpUrl('http://openfpgaduino.github.io/');
@@ -25,7 +27,7 @@ Blockly.JavaScript['plotpush'] = function(block) {
   var point = Blockly.JavaScript.valueToCode(block, 'Point', Blockly.JavaScript.ORDER_ATOMIC);
   var colour = Blockly.JavaScript.valueToCode(block, 'Colour', Blockly.JavaScript.ORDER_ATOMIC);
   var size = Blockly.JavaScript.valueToCode(block, 'Size', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'plotp(' + name + ',' + y +',' + colour +',' + size +');\n';
+  var code = 'plotp(' + name + ',' + point +',' + colour +',' + size +');\n';
   return code;
 };
    
