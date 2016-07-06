@@ -74,7 +74,7 @@
     <div id=Ex>
     </div>
     <div class="panel panel-default">
-      <span id="textClearError" onclick="clean_error()" class="btn btn-warning"></span>
+      <span id="textClearError" onclick="log.error.clean()" class="btn btn-warning"></span>
       <div class="panel-heading">
         <a data-toggle="collapse" data-parent="#accordion" href="#error">
           <div class="alert alert-error" role="alert"><b id="textError"></b>
@@ -88,7 +88,7 @@
     <div>
 
       <div class="panel panel-default">
-        <span id="textClearConsole" onclick="clean_console()" class="btn btn-warning"></span>
+        <span id="textClearConsole" onclick="log.console.clean()" class="btn btn-warning"></span>
         <div class="panel-heading">
           <a data-toggle="collapse" data-parent="#accordion" href="#console">
             <div class="alert alert-info" role="alert"><b id="textConsole"></b>
@@ -557,6 +557,20 @@
       <block type="math_random_float"></block>
     </category>
     <category id="catText" colour="160">
+       <block type="console" inline="false">
+       <value name="Console">
+          <shadow type="text">
+            <field name="TEXT">Openfpgaduino</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="error" inline="false">
+       <value name="Error">
+          <shadow type="text">
+            <field name="TEXT">Openfpgaduino</field>
+          </shadow>
+        </value>
+      </block>
       <block type="text_print" inline="false">
        <value name="TEXT">
           <shadow type="text">
@@ -808,12 +822,12 @@
   <block type="controls_repeat_ext" x="120" y="133">
     <value name="TIMES">
       <shadow type="math_number">
-        <field name="NUM">2</field>
+        <field name="NUM">5</field>
       </shadow>
     </value>
     <statement name="DO">
-      <block type="text_print" inline="false">
-        <value name="TEXT">
+      <block type="console" inline="false">
+        <value name="Console">
           <shadow type="text">
             <field name="TEXT">Openfpgaduino</field>
           </shadow>
