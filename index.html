@@ -44,6 +44,7 @@
   <script src="blockly/demos/interpreter/acorn_interpreter.js"></script>
   <script src="js/toolbox/toolbox.js"></script>
   <script src="js/language/language.js"></script>
+  <script src="js/ajax.js"></script>
 </head>
 
 <body>
@@ -395,36 +396,6 @@
                     ajax_rest_json_delete("/db/remove/example",json);
                     load_example_list();
                 }
-
-                function clean_console() {
-                    document.getElementById("console").innerHTML = " ";
-                };
-
-                function clean_error() {
-                    document.getElementById("error").innerHTML = " ";
-                };
-
-                function console_polling() {
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("get", "console", false);
-                    xhr.send();
-                    var get = xhr.responseText;
-                    get = get.replace(/\n/gi, '</p><p>');
-                    get = get.replace(/\r/gi, '</p><p>');
-                    document.getElementById("console").innerHTML += "<p>" + get + "<\p>";
-                };
-                //setInterval(console_polling, 1000);
-
-                function error_polling() {
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("get", "error", false);
-                    xhr.send();
-                    var get = xhr.responseText;
-                    get = get.replace(/\n/gi, '</p><p>');
-                    get = get.replace(/\r/gi, '</p><p>');
-                    document.getElementById("error").innerHTML += "<p>" + get + "<\p>";
-                };
-                //setInterval(error_polling, 1000);
 
                 function delay_refresh() {
                     window.location.reload();
@@ -856,5 +827,5 @@
 
 <canvas id="myChart" width="400" height="400"></canvas>
 <script src="js/chart.js"></script>
-
+<script src="js/log.js"></script>
 </html>
