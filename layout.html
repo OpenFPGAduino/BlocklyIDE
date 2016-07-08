@@ -65,13 +65,16 @@
                     componentName: 'graph',
                     componentState: { label: 'B' }
                 },{
-                    type: 'component',
-                    componentName: 'console',
-                    componentState: { label: 'C' }
-                },{
-                    type: 'component',
-                    componentName: 'error',
-                    componentState: { label: 'D' }
+                    type: 'stack',
+                    content:[{
+                        type: 'component',
+                        componentName: 'console',
+                        componentState: { label: 'C' }
+                    },{
+                        type: 'component',
+                        componentName: 'error',
+                        componentState: { label: 'D' }
+                    }]
                 }]
             }]
         }]
