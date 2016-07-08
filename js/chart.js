@@ -1,5 +1,9 @@
-var ctx = document.getElementById("myChart");
-var myLineChart = new Chart(ctx, {
+var ctx, myLineChart
+
+function load_chart() 
+{
+    ctx = document.getElementById("myChart");
+    myLineChart = new Chart(ctx, {
     type: 'line',
     data: {
         datasets: []
@@ -12,7 +16,9 @@ var myLineChart = new Chart(ctx, {
             }]
         }
     }
-});
+    });
+    
+}
 
 function get_data_byname(datasets, name) {
     for (i in datasets) {

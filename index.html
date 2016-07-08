@@ -45,6 +45,9 @@
   <script src="js/toolbox/toolbox.js"></script>
   <script src="js/language/language.js"></script>
   <script src="js/ajax.js"></script>
+  <script src="js/blockly.js"></script>
+  <script src="js/chart.js"></script>
+  <script src="js/log.js"></script>
 </head>
 
 <body>
@@ -135,7 +138,7 @@
                 <a id="textYes"  href="#" data-dismiss="modal" class="btn btn-primary" onclick="do_delete_example()"></a>
             </div>
         </div>
-
+        <canvas id="myChart" width="400" height="400"></canvas>
             <script>
                 function ajax_rest_json_get(url) {
                     var xhr = new XMLHttpRequest();
@@ -181,17 +184,7 @@
                     debuginf(xhr.status);
                 }
               
-                var workspace; 
-                var load_blockly = function()
-                {
-                      load_language();
-                      workspace = Blockly.inject('blocklyDiv',
-                          {media: 'blockly/media/',
-                          zoom:{controls: true, wheel: true},
-                          toolbox: document.getElementById('toolbox')});
-                      Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),
-                                                workspace);
-                }
+
 
                 function load_config_list() {
                     var xhr = new XMLHttpRequest();
@@ -408,9 +401,9 @@
 
                 window.onload = function() {
                     load_blockly();
+                    load_chart();
                     load_example_list();
-                    //load_config_list();
-
+                    //load_config_list();                   
                 }
 
                 </script>
@@ -836,10 +829,5 @@
     </statement>
   </block>
 </xml>
-
 </body>
-
-<canvas id="myChart" width="400" height="400"></canvas>
-<script src="js/chart.js"></script>
-<script src="js/log.js"></script>
 </html>
