@@ -23,5 +23,7 @@ Blockly.Msg.PLOTCLEAN = "Plot Clean";
 Blockly.Msg.PLOTP = "PlotPoint";
 Blockly.Msg.PLOTPOINT = "Point";
 Blockly.Msg.PLOTSIZE = "MaxPoints";
+Blockly.Msg.ERROR = "Error";
+Blockly.Msg.CONSOLE = "Console";
 
 

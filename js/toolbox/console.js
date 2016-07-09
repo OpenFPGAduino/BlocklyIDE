@@ -2,12 +2,12 @@ Blockly.Blocks['console'] = {
   init: function() {
     this.appendValueInput("Console")
         .setCheck("String")
-        .appendField("Console");
+        .appendField(Blockly.Msg.CONSOLE);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(160);
     this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
+    this.setHelpUrl('http://openfpgaduino.github.io/');
   }
 };
 Blockly.JavaScript['console'] = function(block) {

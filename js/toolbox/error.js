@@ -2,12 +2,12 @@ Blockly.Blocks['error'] = {
   init: function() {
     this.appendValueInput("Error")
         .setCheck("String")
-        .appendField("Error");
+        .appendField(Blockly.Msg.ERROR);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(160);
     this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
+    this.setHelpUrl('http://openfpgaduino.github.io/');
   }
 };
 Blockly.JavaScript['error'] = function(block) {

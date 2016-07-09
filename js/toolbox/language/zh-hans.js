@@ -23,3 +23,5 @@ Blockly.Msg.PLOTCLEAN = "清除绘图";
 Blockly.Msg.PLOTP = "绘点";
 Blockly.Msg.PLOTPOINT = "点";
 Blockly.Msg.PLOTSIZE = "最大点数";
+Blockly.Msg.ERROR = "错误";
+Blockly.Msg.CONSOLE = "终端";
