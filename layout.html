@@ -32,22 +32,19 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
   <title>Opnefpgaduino Blockly IDE</title>
-  <script>
-  var debug = true;
-  function debuginf(string) {
-      if (debug == true) {
-          console.log(string);
-      }
-  }
-
-  </script>
+  <script src="js/debug.js"></script>
   <script src="blockly/blockly_compressed.js"></script>
   <script src="blockly/blocks_compressed.js"></script>
   <script src="blockly/javascript_compressed.js"></script>
   <script src="blockly/demos/interpreter/acorn_interpreter.js"></script>
   <script src="js/toolbox/toolbox.js"></script>
   <script src="js/language/language.js"></script>
+  <script src="js/interpreter.js"></script>
   <script src="js/ajax.js"></script>
+  <script src="js/blockly.js"></script>
+  <script src="js/chart.js"></script>
+  <script src="js/log.js"></script>
+  <script src="js/main.js"></script>
   
 
     <script>
@@ -100,12 +97,429 @@
 
     myLayout.init();
     </script>
-    <script src="js/chart.js"></script>
-    <script src="js/log.js"></script>
 </head>
 
 <body>
+ <xml id="toolbox" style="display: none">
+    <category id="catLogic" colour="210">
+      <block type="controls_if"></block>
+      <block type="logic_compare"></block>
+      <block type="logic_operation"></block>
+      <block type="logic_negate"></block>
+      <block type="logic_boolean"></block>
+      <block type="logic_null"></block>
+      <block type="logic_ternary"></block>
+    </category>
+    <category id="catLoops" colour="120">
+      <block type="wait">
+        <value name="seconds">
+          <shadow type="math_number">
+            <title name="NUM">1</title>
+          </shadow>
+        </value>
+      </block>  
+      <block type="controls_repeat_ext">
+        <value name="TIMES">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="controls_whileUntil"></block>
+      <block type="controls_for">
+        <value name="FROM">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="TO">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+        <value name="BY">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="controls_forEach"></block>
+      <block type="controls_flow_statements"></block>
+    </category>    
+    <category id="catMath" colour="230">
+  <block type="math_number"></block>
+      <block type="math_arithmetic">
+        <value name="A">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="B">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_single">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">9</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_trig">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">45</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_constant"></block>
+      <block type="math_number_property">
+        <value name="NUMBER_TO_CHECK">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_change">
+        <value name="DELTA">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_round">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">3.1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_on_list"></block>
+      <block type="math_modulo">
+        <value name="DIVIDEND">
+          <shadow type="math_number">
+            <field name="NUM">64</field>
+          </shadow>
+        </value>
+        <value name="DIVISOR">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_constrain">
+        <value name="VALUE">
+          <shadow type="math_number">
+            <field name="NUM">50</field>
+          </shadow>
+        </value>
+        <value name="LOW">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="HIGH">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_random_int">
+        <value name="FROM">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="TO">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_random_float"></block>
+    </category>
+    <category id="catText" colour="160">
+       <block type="console" inline="false">
+       <value name="Console">
+          <shadow type="text">
+            <field name="TEXT">Openfpgaduino</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="error" inline="false">
+       <value name="Error">
+          <shadow type="text">
+            <field name="TEXT">Openfpgaduino</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_print" inline="false">
+       <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">Openfpgaduino</field>
+          </shadow>
+        </value>
+      </block>
+     <block type="text"></block>
+      <block type="text_join"></block>
+      <block type="text_append">
+        <value name="TEXT">
+          <shadow type="text"></shadow>
+        </value>
+      </block>
+      <block type="text_length">
+        <value name="VALUE">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_isEmpty">
+        <value name="VALUE">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_indexOf">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">text</field>
+          </block>
+        </value>
+        <value name="FIND">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_charAt">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">text</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_getSubstring">
+        <value name="STRING">
+          <block type="variables_get">
+            <field name="VAR">text</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_changeCase">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_trim">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_prompt_ext">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+    </category>
+    <category id="catLists" colour="260">
+ 	  <block type="lists_create_with">
+        <mutation items="0"></mutation>
+      </block>
+      <block type="lists_create_with"></block>
+      <block type="lists_repeat">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">5</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="lists_length"></block>
+      <block type="lists_isEmpty"></block>
+      <block type="lists_indexOf">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">list</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_getIndex">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">list</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_setIndex">
+        <value name="LIST">
+          <block type="variables_get">
+            <field name="VAR">list</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_getSublist">
+        <value name="LIST">
+          <block type="variables_get">
+            <field name="VAR">list</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_split">
+        <value name="DELIM">
+          <shadow type="text">
+            <field name="TEXT">,</field>
+          </shadow>
+        </value>
+      </block>
+    </category>
+    <category id="catColour" colour="20">
+      <block type="colour_picker"></block>
+      <block type="colour_random"></block>
+      <block type="colour_rgb">
+        <value name="RED">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+        </value>
+        <value name="GREEN">
+          <shadow type="math_number">
+            <field name="NUM">50</field>
+          </shadow>
+        </value>
+        <value name="BLUE">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="colour_blend">
+        <value name="COLOUR1">
+          <shadow type="colour_picker">
+            <field name="COLOUR">#ff0000</field>
+          </shadow>
+        </value>
+        <value name="COLOUR2">
+          <shadow type="colour_picker">
+            <field name="COLOUR">#3333ff</field>
+          </shadow>
+        </value>
+        <value name="RATIO">
+          <shadow type="math_number">
+            <field name="NUM">0.5</field>
+          </shadow>
+        </value>
+      </block>
+    </category>
+    <category id="catVariables" colour="330" custom="VARIABLE"></category>
+    <category id="catFunctions" colour="290" custom="PROCEDURE"></category>
+    <sep></sep>
+    <category name="Openfpgaduino" colour="260">
+      <block type="led">
+          <value name="colour">
+          	<shadow type="colour_picker"></shadow>
+          </value>
+      </block>
+      <block type="rgb_led">
+        <value name="r">
+          <shadow type="math_number">
+            <title name="NUM">255</title>
+          </shadow>
+        </value>
+        <value name="g">
+          <shadow type="math_number">
+            <title name="NUM">255</title>
+          </shadow>
+        </value>
+        <value name="b">
+          <shadow type="math_number">
+            <title name="NUM">255</title>
+          </shadow>
+        </value>
+      </block>
+      <block type="temperature">
+        <value name="ID">
+          <shadow type="math_number">
+            <title name="NUM">1</title>
+          </shadow>
+        </value>
+      </block>
+      <block type="moisture">
+        <value name="ID">
+          <shadow type="math_number">
+            <title name="NUM">1</title>
+          </shadow>
+        </value>
+      </block>
+      <block type="analoginput">
+      </block>
+      <block type="analoginit">
+      </block>   
+      <block type="shield_init">
+      </block>  
+      <block type="digitaloutput">
+        <value name="ID">
+          <shadow type="math_number">
+            <title name="NUM">1</title>
+          </shadow>
+        </value>
+      </block> 
+      <block type="steering">
+          <value name="ID">
+          <shadow type="math_number">
+            <title name="NUM">1</title>
+          </shadow>
+          </value>
+      </block> 
+      <block type="stepmotor">
+          <value name="ID">
+          <shadow type="math_number">
+            <title name="NUM">1</title>
+          </shadow>
+        </value>
+          <value name="step">
+          <shadow type="math_number">
+            <title name="NUM">1</title>
+          </shadow>
+        </value>
+      </block> 
+    </category>
+    <category id="catChart" colour="60">
+       <block type="plot">
+      </block>  
+       <block type="plotclean">
+      </block>  
+      <block type="plotpush">
+      </block>  
+    </category>
+  </xml>
 
+<xml id=startBlocks style="display: none">
+  <block type="controls_repeat_ext" x="120" y="133">
+    <value name="TIMES">
+      <shadow type="math_number">
+        <field name="NUM">5</field>
+      </shadow>
+    </value>
+    <statement name="DO">
+      <block type="console" inline="false">
+        <value name="Console">
+          <shadow type="text">
+            <field name="TEXT">Openfpgaduino</field>
+          </shadow>
+        </value>
+      </block>
+    </statement>
+  </block>
+</xml>
 </body>
 
 </html>
