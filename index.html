@@ -8,9 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/Chart.min.js"></script>
        
@@ -30,14 +28,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
   <title>Opnefpgaduino Blockly IDE</title>
-  <script>
-  var debug = true;
-  function debuginf(string) {
-      if (debug == true) {
-          console.log(string);
-      }
-  }
-  </script>
+  <script src="debug.js"></script>
   <script src="blockly/blockly_compressed.js"></script>
   <script src="blockly/blocks_compressed.js"></script>
   <script src="blockly/javascript_compressed.js"></script>
@@ -140,100 +131,7 @@
             </div>
         </div>
         <canvas id="myChart" width="400" height="400"></canvas>
-            <script>
-                function ajax_rest_json_get(url) {
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("get", url, false);
-                    xhr.setRequestHeader("Content-Type", "application/json");
-                    xhr.send();
-                    debuginf(xhr.responseText);
-                    return (JSON.parse(xhr.responseText));
-                }
-                
-                function ajax_rest_json_post(url, json) {
-                    var xhr = new XMLHttpRequest();
-                    var post;
-                    xhr.open("post", url, false);
-                    xhr.setRequestHeader("Content-Type", "application/json");
-                    xhr.send(JSON.stringify(json));
-                    debuginf(xhr.responseText);
-                    return (JSON.parse(xhr.responseText));
-                }
-                
-                function ajax_rest_json_delete(url, json) {
-                    var xhr = new XMLHttpRequest();
-                    var post;
-                    xhr.open("delete", url, false);
-                    xhr.setRequestHeader("Content-Type", "application/json");
-                    xhr.send(JSON.stringify(json));
-                    debuginf(xhr.status);
-                }
-                
-                
-                function ajax_rest_post(url, arg1, arg2) {
-                    var xhr = new XMLHttpRequest();
-                    var post;
-                    xhr.open("post", url, false);
-                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
-                    if (arg1 != undefined)
-                        post = encodeURIComponent("arg1") + "=" + encodeURIComponent(arg1) + "&";
-                    else
-                        post = null;
-                    if (arg2 != undefined)
-                        post += encodeURIComponent("arg2") + "=" + encodeURIComponent(arg2) + "&";
-                    xhr.send(post);
-                    debuginf(xhr.status);
-                }
-              
 
-
-                function load_config_list() {
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("get", "load_config", false);
-                    xhr.send();
-                    var versionlist = xhr.responseText;
-                    debuginf(versionlist);
-                    var list = versionlist.split(',');
-                    var html_list = "";
-                    debuginf(list);
-                    for (var index in list) {
-                        debuginf(list[index]);
-                        var name = list[index].split('.')[0];
-                        var ext = list[index].split('.')[1];
-                        if (ext == 'rbf') {
-                            html_list += "<li><a href='#' onClick= configrations(event)>" +
-                                name + "</a></li>";
-                        }
-                    }
-                    document.getElementById("version_list").innerHTML = html_list;
-                }
-
-                function load_example_list() {
-                    var list = ajax_rest_json_get("/db/list/example");
-                    debuginf(list);
-                    if (list == null ) return;
-                    var html_list = "";
-                    for (var index in list) {
-                        debuginf(list[index]);
-                        var name = list[index].file;
-                        html_list += "<span id=" + name + " onmousedown='mousedown(event)' onmouseup='mouseup(event)' class='btn btn-info'>" + name + "</span>";
-                    }
-                    document.getElementById("Ex").innerHTML = html_list;
-                }
-                
-             
-
-
-  
-
-                window.onload = function() {
-                    load_blockly();
-                    load_chart();
-                    load_example_list();
-                    //load_config_list();                   
-                }
-
-                </script>
 
  <!-- Blockly toolbox -->
   <xml id="toolbox" style="display: none">
