@@ -1,23 +1,22 @@
 var ctx, myLineChart
 
-function load_chart() 
-{
+function load_chart() {
     ctx = document.getElementById("myChart");
     myLineChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        datasets: []
-    },
-    options: {
-        scales: {
-            xAxes: [{
-                type: 'linear',
-                position: 'bottom'
-            }]
+        type: 'line',
+        data: {
+            datasets: []
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    type: 'linear',
+                    position: 'bottom'
+                }]
+            }
         }
-    }
     });
-    
+
 }
 
 function get_data_byname(datasets, name) {
