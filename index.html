@@ -1,18 +1,15 @@
-
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/Chart.min.js"></script>
-       
-    <!--
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Bootstrap -->
+<link href="css/bootstrap-3.3.4.css" rel="stylesheet" type="text/css">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap-3.3.4.js" type="text/javascript"></script>
+<script src="js/Chart.min.js"></script>
+<!--
   Author:  Zhizhou Li <lzz@meteroi.com>
  
   Copyright 2016 Meteroi
@@ -27,27 +24,32 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
-  <title>Opnefpgaduino Blockly IDE</title>
-  <script src="blockly/blockly_compressed.js"></script>
-  <script src="blockly/blocks_compressed.js"></script>
-  <script src="blockly/javascript_compressed.js"></script>
-  <script src="blockly/demos/interpreter/acorn_interpreter.js"></script>
-  <script src="js/debug.js"></script>
-  <script src="js/toolbox/toolbox.js"></script>
-  <script src="js/language/language.js"></script>
-  <script src="js/interpreter.js"></script>
-  <script src="js/ajax.js"></script>
-  <script src="js/blockly.js"></script>
-  <script src="js/chart.js"></script>
-  <script src="js/log.js"></script>
-  <script src="js/main.js"></script>
+<title>Opnefpgaduino Blockly IDE</title>
+<script src="blockly/blockly_compressed.js"></script>
+<script src="blockly/blocks_compressed.js"></script>
+<script src="blockly/javascript_compressed.js"></script>
+<script src="blockly/demos/interpreter/acorn_interpreter.js"></script>
+<script src="js/debug.js"></script>
+<script src="js/toolbox/toolbox.js"></script>
+<script src="js/language/language.js"></script>
+<script src="js/interpreter.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/blockly.js"></script>
+<script src="js/chart.js"></script>
+<script src="js/log.js"></script>
+<script src="js/main.js"></script>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
-
 <body>
-    <img id=broadpic alt="">
-    <select id="languageMenu"></select>
-    <div id="IDE" class="">
-        <a id="textSave" href="#savedialog" role="button" class="btn" data-toggle="modal"></a>
+<!--<img id=broadpic alt="">-->
+<div class="container-fluid">
+  <div class="row-fluid">
+        <a id="textSave" href="#savedialog" role="button" class="btn btn-default" data-toggle="modal"></a>
         <span id="textRun" onclick="run()" class="btn btn-success"></span>
         <span id="textStop" onclick="stop()" class="btn btn-warning" ></span>
         <span id="textStep" onclick="step()" class="btn btn-danger" ></span>
@@ -63,76 +65,93 @@
         <!--<span id="textFPGA" onclick="fpga()" class="btn btn-info"></span>-->
         </div>
         </span>
+        <select id="languageMenu"></select>
+  </div>
+  <div class="row-fluid">
+   <div class="col-md-8">
+     <div id="blocklyDiv" style="height: 400px;"></div>
+     <div id=Ex></div>
+   </div>
+   <div class="col-md-4"><div class="panel panel-default">
+      <canvas id="myChart" width="400" height="400"></canvas>  
+      </div>
+   </div>
+  </div>
+  </div>
+  <div class="row-fluid">
+   <div class="col-md-6">
+        <span id="textClearConsole" onclick="log.console.clean()" class="btn btn-warning"></span>
+        <div class="accordion-heading">
+        <a data-toggle="collapse" data-parent="#accordion" href="#console">
+        <div class="alert alert-info" role="alert">
+        <b id="textConsole"></b>
+        </div>
+        </a>
+        </div>
+        <div id="console" class="panel-collapse collapse in">
+        </div>
 
-    <div id="blocklyDiv" style="height: 480px;"></div>
-
-    </div>
-    <div id=Ex>
-    </div>
-    <div class="panel panel-default">
+   </div>
+   <div class="col-md-6">
       <span id="textClearError" onclick="log.error.clean()" class="btn btn-warning"></span>
-      <div class="panel-heading">
+      <div class="accordion-heading">
         <a data-toggle="collapse" data-parent="#accordion" href="#error">
-          <div class="alert alert-error" role="alert"><b id="textError"></b>
+          <div class="alert alert-danger" role="alert">
+          <b id="textError"></b>
           </div>
         </a>
       </div>
       <div id="error" class="panel-collapse collapse in">
       </div>
     </div>
+
+       
+  </div>
+  </div>
+</div>
+
+<!-- Save file dialog -->
+<div class="modal fade" id="savedialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 id="testSaveProgram"></h3>
     </div>
-    <div>
-
-      <div class="panel panel-default">
-        <span id="textClearConsole" onclick="log.console.clean()" class="btn btn-warning"></span>
-        <div class="panel-heading">
-          <a data-toggle="collapse" data-parent="#accordion" href="#console">
-            <div class="alert alert-info" role="alert"><b id="textConsole"></b>
-            </div>
-          </a>
+    <div class="modal-body">
+        <div class="input-group">
+            <input id="dialog_filename" type="text" class="form-control" placeholder="filename">
+            <span class="input-group-addon">.xml</span>
         </div>
-        <div id="console" class="panel-collapse collapse in">
-        </div>
-      </div>
     </div>
-    <div>
+    <div class="modal-footer">
+        <a id="textPopClose" href="#" data-dismiss="modal" class="btn"></a>
+        <a id="textPopSave" href="#" data-dismiss="modal" class="btn btn-primary" onclick="save()"></a>
+    </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
 
-        <!-- Save file dialog -->
-        <div class="modal hide fade" id="savedialog">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 id="testSaveProgram"></h3>
-            </div>
-            <div class="modal-body">
-                <div class="input-group">
-                    <input id="dialog_filename" type="text" class="form-control" placeholder="filename">
-                    <span class="input-group-addon">.xml</span>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a id="textPopClose" href="#" data-dismiss="modal" class="btn"></a>
-                <a id="textPopSave" href="#" data-dismiss="modal" class="btn btn-primary" onclick="save()"></a>
-            </div>
+<!-- pop dialog -->
+<div class="modal fade" id="popdialog">
+    <div class="modal-content">
+    <div class="modal-header">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 id="testSureToDelete"></h3>
+    </div>
+    <div class="modal-body">
+        <div class="input-group">
+            <p id="pop_message"></p>
         </div>
-
-        <!-- pop dialog -->
-        <div class="modal hide fade" id="popdialog">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 id="testSureToDelete"></h3>
-            </div>
-            <div class="modal-body">
-                <div class="input-group">
-                    <p id="pop_message"></p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a id="textNo" href="#" data-dismiss="modal" class="btn"></a>
-                <a id="textYes"  href="#" data-dismiss="modal" class="btn btn-primary" onclick="do_delete_example()"></a>
-            </div>
-        </div>
-        <canvas id="myChart" width="400" height="400"></canvas>
-
+    </div>
+    <div class="modal-footer">
+        <a id="textNo" href="#" data-dismiss="modal" class="btn"></a>
+        <a id="textYes"  href="#" data-dismiss="modal" class="btn btn-primary" onclick="do_delete_example()"></a>
+    </div>
+   </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
 
  <!-- Blockly toolbox -->
   <xml id="toolbox" style="display: none">
@@ -538,7 +557,7 @@
   </xml>
 
 <xml id=startBlocks style="display: none">
-  <block type="controls_repeat_ext" x="120" y="133">
+  <block type="controls_repeat_ext">
     <value name="TIMES">
       <shadow type="math_number">
         <field name="NUM">5</field>
@@ -547,12 +566,42 @@
     <statement name="DO">
       <block type="console" inline="false">
         <value name="Console">
-          <shadow type="text">
+          <shadow type="text" >
             <field name="TEXT">Openfpgaduino</field>
           </shadow>
         </value>
       </block>
     </statement>
+    <next>
+      <block type="plot">
+        <value name="Name">
+          <block type="text">
+            <field name="TEXT">Openfpgaduino</field>
+          </block>
+        </value>
+        <value name="y">
+          <block type="lists_split">
+            <mutation mode="SPLIT"></mutation>
+            <field name="MODE">SPLIT</field>
+            <value name="INPUT">
+              <block type="text">
+                <field name="TEXT">1,2,3,4,5</field>
+              </block>
+            </value>
+            <value name="DELIM">
+              <shadow type="text">
+                <field name="TEXT">,</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+        <value name="colour">
+          <block type="colour_picker">
+            <field name="COLOUR">#00cccc</field>
+          </block>
+        </value>
+      </block>
+    </next>
   </block>
 </xml>
 </body>

@@ -29,8 +29,7 @@ function save() {
 }
 
 function stop() {
-    // debuginf("stop");
-    // ajax_rest_post("stop");
+    myInterpreter.run();
 }
 
 var code_runing = false;
