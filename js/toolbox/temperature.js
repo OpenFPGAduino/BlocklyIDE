@@ -15,6 +15,6 @@ Blockly.Blocks['temperature'] = {
 
 Blockly.JavaScript['temperature'] = function(block) {
   var id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = "ajax_post('/fpga/api/call/am2301_temperature', ["+ id+"])"
+  var code = "Bytes2Float32(ajax_post('/fpga/api/call/am2301_temperature', ["+ id+"]))"
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
