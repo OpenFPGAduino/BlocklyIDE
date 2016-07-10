@@ -15,6 +15,6 @@ Blockly.Blocks['analoginit'] = {
 
 Blockly.JavaScript['analoginit'] = function(block) {
   var ch = block.getFieldValue('CH');
-  var code = "ajax_post('fpga/api/call/ain_"+ch+"', [])";
+  var code = "ajax_post('/fpga/api/call/ain_"+ch+"_init', []);";
   return code;
 };
