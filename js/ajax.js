@@ -1,20 +1,9 @@
 function ajax_post(url, json) {
-    var xhr = new XMLHttpRequest()
-    xhr.open('post', url, false);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    var ret = xhr.send(JSON.stringify(json));
-    if (typeof variable !== "undefined" && variable !== null) {
-        return JSON.parser(ret);
-    } else
-        return ret;
+    return ajax_rest_json_post(url,json)
 }
 
 function ajax_get(url) {
-    var xhr = new XMLHttpRequest()
-    xhr.open('get', url, false);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    var ret = xhr.send();
-    return JSON.parser(ret);
+    return ajax_rest_json_get(url)
 }
 
 function ajax_rest_json_get(url) {
