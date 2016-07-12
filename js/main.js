@@ -67,11 +67,11 @@ function reboot() {
 }
 
 function configrations(event) {
-    var version = event.srcElement.innerText;
-    document.getElementById('broadpic').src = 'config/' + version + '.jpg';
+    var filename = event.srcElement.innerText;
+    //document.getElementById('broadpic').src = 'config/' + version + '.jpg';
     debuginf("configrations");
-    debuginf(version);
-    ajax_rest_post("config", version);
+    debuginf(filename);
+    ajax_rest_post("/fpga/config", "{filename:"+ filename+".rbf"+"}}");
 }
 
 function fpga() {
@@ -131,13 +131,7 @@ function page_refresh() {
 }
 
 function load_config_list() {
-    var xhr = new XMLHttpRequest();
-    xhr.open("get", "load_config", false);
-    xhr.send();
-    var versionlist = xhr.responseText;
-    debuginf(versionlist);
-    var list = versionlist.split(',');
-    var html_list = "";
+    filelist = ajax_rest_get("/fpga/config/list");
     debuginf(list);
     for (var index in list) {
         debuginf(list[index]);
@@ -169,5 +163,5 @@ window.onload = function () {
     load_blockly();
     load_chart();
     load_example_list();
-    //load_config_list();                   
+    load_config_list();                   
 }
