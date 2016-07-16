@@ -6,6 +6,10 @@ function ajax_get(url) {
     return ajax_rest_json_get(url)
 }
 
+function ajax_delete(url, json) {
+    return ajax_rest_json_delete(url, json)
+}
+
 function ajax_rest_json_get(url) {
     var xhr = new XMLHttpRequest();
     xhr.open("get", url, false);
