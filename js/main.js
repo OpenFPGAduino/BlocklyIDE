@@ -131,7 +131,7 @@ function page_refresh() {
 }
 
 function load_config_list() {
-    filelist = ajax_rest_json_get("/fpga/config/list");
+    list = ajax_rest_json_get("/fpga/config/list");
     debuginf(list);
     for (var index in list) {
         debuginf(list[index]);
