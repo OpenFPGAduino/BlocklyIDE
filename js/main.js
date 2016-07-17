@@ -24,7 +24,7 @@ function save() {
         file: file,
         xml: xml
     }
-    ajax_rest_json_post("/db/add/example", json);
+    ajax_post("/db/add/example", json);
     load_example_list();
 }
 
@@ -83,7 +83,7 @@ function load_example(event) {
     debuginf(example);
     debuginf("load code");
     var query = { "file": { "$eq": example } }
-    var json = ajax_rest_json_post("/db/query/example", query)
+    var json = ajax_post("/db/query/example", query)
     debuginf(json[0].xml);
     debuginf(document.getElementById('startBlocks'));
     workspace.clear();
@@ -132,7 +132,7 @@ function page_refresh() {
 
 function load_config_list() {
     var html_list ="";
-    list = ajax_rest_json_get("/fpga/config/list");
+    list = ajax_get("/fpga/config/list");
     debuginf(list);
     for (var index in list) {
         debuginf(list[index]);
@@ -147,7 +147,7 @@ function load_config_list() {
 }
 
 function load_example_list() {
-    var list = ajax_rest_json_get("/db/list/example");
+    var list = ajax_get("/db/list/example");
     debuginf(list);
     if (list == null) return;
     var html_list = "";
