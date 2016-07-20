@@ -29,7 +29,8 @@ function save() {
 }
 
 function stop() {
-    myInterpreter.run();
+    parseCode();
+    code_runing = false;
 }
 
 var code_runing = false;
