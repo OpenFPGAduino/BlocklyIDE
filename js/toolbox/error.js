@@ -12,6 +12,6 @@ Blockly.Blocks['error'] = {
 };
 Blockly.JavaScript['error'] = function(block) {
   var error = Blockly.JavaScript.valueToCode(block, 'Error', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'log.error.print('+ error +')\n';
+  var code = 'error_print('+ error +')\n';
   return code;
 };

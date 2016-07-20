@@ -20,4 +20,23 @@ var log = {
         }
     }
 }
-    //log.console.print("lizhizhou\n hello world\n");
+
+function console_print(text) 
+{
+    log.console.print(text)
+}
+
+function console_clean() 
+{
+    log.console.clean()
+}
+
+function error_print(text) 
+{
+    log.error.print(text)
+}
+
+function console_clean() 
+{
+    log.error.clean()
+}

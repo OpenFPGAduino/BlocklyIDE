@@ -12,6 +12,6 @@ Blockly.Blocks['console'] = {
 };
 Blockly.JavaScript['console'] = function(block) {
   var console = Blockly.JavaScript.valueToCode(block, 'Console', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'log.console.print('+ console +')\n';
+  var code = 'console_print('+ console +')\n';
   return code;
 };

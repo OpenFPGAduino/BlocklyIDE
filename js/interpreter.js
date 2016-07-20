@@ -2,18 +2,38 @@
 var myInterpreter = null;
 
 function initApi(interpreter, scope) {
+    
+    var wrapper = function (name, y, color) {
+    var ydata = []
+    for (i in y.properties)
+    {
+        ydata.push(y.properties[i].data)
+    }
+    return interpreter.createPrimitive(plot(name.data, ydata, color.data));
+  };
+  interpreter.setProperty(scope, 'plot',
+    interpreter.createNativeFunction(wrapper));
+
+  var wrapper = function (text) {
+    text = text ? text.toString() : '';
+    return interpreter.createPrimitive(console_print(text));
+  };
+  interpreter.setProperty(scope, 'console_print',
+    interpreter.createNativeFunction(wrapper));
+    
+    var wrapper = function (text) {
+    text = text ? text.toString() : '';
+    return interpreter.createPrimitive(error_print(text));
+  };
+  interpreter.setProperty(scope, 'error_print',
+    interpreter.createNativeFunction(wrapper));  
+    
   // Add an API function for the alert() block.
   var wrapper = function (text) {
     text = text ? text.toString() : '';
     return interpreter.createPrimitive(alert(text));
   };
   interpreter.setProperty(scope, 'alert',
-    interpreter.createNativeFunction(wrapper));
-
-  var wrapper = function (name, y, color) {
-    return interpreter.createPrimitive(plot(name, y, color));
-  };
-  interpreter.setProperty(scope, 'plot',
     interpreter.createNativeFunction(wrapper));
 
   // Add an API function for the prompt() block.
