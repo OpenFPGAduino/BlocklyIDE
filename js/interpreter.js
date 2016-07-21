@@ -10,6 +10,12 @@ function initApi(interpreter, scope) {
   interpreter.setProperty(scope, 'alert',
     interpreter.createNativeFunction(wrapper));
 
+  var wrapper = function (name, y, color) {
+    return interpreter.createPrimitive(plot(name, y, color));
+  };
+  interpreter.setProperty(scope, 'plot',
+    interpreter.createNativeFunction(wrapper));
+
   // Add an API function for the prompt() block.
   var wrapper = function (text) {
     text = text ? text.toString() : '';
