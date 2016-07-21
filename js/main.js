@@ -63,7 +63,7 @@ function stepCode() {
 
 function reboot() {
     debuginf("reboot");
-    ajax_rest_get("reboot");
+    ajax_get("reboot");
 }
 
 function configrations(event) {
@@ -117,7 +117,7 @@ function do_delete_example() {
     debuginf("do delete code");
     debuginf(file);
     var json = { file: file }
-    ajax_rest_json_delete("/db/remove/example", json);
+    ajax_delete("/db/remove/example", json);
     load_example_list();
 }
 
