@@ -18,6 +18,7 @@ Blockly.Blocks['steering'] = {
 Blockly.JavaScript['steering'] = function(block) {
   var angle = block.getFieldValue('angle');
   var id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = ';\n';
+  var code = 
+      "ajax_post('/fpga/api/call/steering', ["+id+','+ angle+"]);\n"
   return code;
 };
