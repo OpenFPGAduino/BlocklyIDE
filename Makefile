@@ -11,7 +11,8 @@ all:
 	rsync -aR js blocklyide
 	rsync -aR css blocklyide
 	rsync -aR index.html blocklyide
-	
+install: all
+	cp -r blocklyide ../Arduinojs/page/	
 clean:
 	rm -rf blocklyide
 	@echo "clean ready"
