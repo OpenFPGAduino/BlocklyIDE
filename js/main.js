@@ -72,7 +72,7 @@ function configrations(event) {
     //document.getElementById('broadpic').src = 'config/' + version + '.jpg';
     debuginf("configrations");
     debuginf(filename);
-    ajax_post("/fpga/config", "{filename:"+ filename+".rbf"+"}");
+    ajax_post("/fpga/config", { "filename" : filename +".rbf" });
 }
 
 function fpga() {
