@@ -40,6 +40,7 @@ function plotxy(name, x, y, color) {
         data: data,
         fill: false,
         borderColor: color,
+        lineTension: 0,
     }
     myLineChart.data.datasets.push(dataset);
     myLineChart.update();
@@ -58,6 +59,7 @@ function plot(name, y, color) {
         data: data,
         fill: false,
         borderColor: color,
+        lineTension: 0,
     }
     myLineChart.data.datasets.push(dataset);
     myLineChart.update();
@@ -72,6 +74,7 @@ function plotp(name, p, color, size) {
             data: [],
             fill: false,
             borderColor: color,
+            lineTension: 0,
         }
         myLineChart.data.datasets.push(dataset)
         point = {
