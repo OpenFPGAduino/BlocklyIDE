@@ -14,6 +14,12 @@ function initApi(interpreter, scope) {
   interpreter.setProperty(scope, 'plot',
     interpreter.createNativeFunction(wrapper));
 
+  var wrapper = function () {
+    return interpreter.createPrimitive(plotclean());
+  };
+  interpreter.setProperty(scope, 'plotclean',
+    interpreter.createNativeFunction(wrapper));
+
   var wrapper = function (text) {
     text = text ? text.toString() : '';
     return interpreter.createPrimitive(console_print(text));
