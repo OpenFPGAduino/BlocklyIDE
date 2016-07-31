@@ -3,6 +3,22 @@ var myInterpreter = null;
 
 function initApi(interpreter, scope) {
     
+  var wrapper = function (name, x, y, color) {
+     var xdata = []
+    for (i in y.properties)
+    {
+        xdata.push(x.properties[i].data)
+    }
+    var ydata = []
+    for (i in y.properties)
+    {
+        ydata.push(y.properties[i].data)
+    }
+    return interpreter.createPrimitive(plotxy(name.data, xdata, ydata, color.data));
+  };
+  interpreter.setProperty(scope, 'plotxy',
+    interpreter.createNativeFunction(wrapper));   
+    
     var wrapper = function (name, y, color) {
     var ydata = []
     for (i in y.properties)
