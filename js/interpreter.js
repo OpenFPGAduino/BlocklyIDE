@@ -2,6 +2,12 @@
 var myInterpreter = null;
 
 function initApi(interpreter, scope) {
+ 
+   var wrapper = function (url) {
+    url = url ? url.toString() : '';
+    return interpreter.createPrimitive(ajax_get(url));
+  };
+ 
     
   var wrapper = function (name, x, y, color) {
      var xdata = []
