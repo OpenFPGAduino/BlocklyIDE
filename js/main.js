@@ -14,6 +14,7 @@ function run() {
         alert(e);
     }
 }
+var example_list;
 function save() {
     // Generate XML code and display it.
     var dom = Blockly.Xml.workspaceToDom(workspace);
@@ -23,6 +24,14 @@ function save() {
     var json = {
         file: file,
         xml: xml
+    }
+    for(ex in example_list)
+    {
+        if(ex == file){
+            ajax_post("/db/update/example", json);
+            load_example_list();
+            return;
+        }
     }
     ajax_post("/db/add/example", json);
     load_example_list();
@@ -151,6 +160,7 @@ function load_example_list() {
     var list = ajax_get("/db/list/example");
     debuginf(list);
     if (list == null) return;
+    example_list = list;
     var html_list = "";
     for (var index in list) {
         debuginf(list[index]);
