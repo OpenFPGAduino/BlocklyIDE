@@ -3,11 +3,28 @@ var myInterpreter = null;
 
 function initApi(interpreter, scope) {
  
+  var wrapper = function (url, json) {
+    url = url ? url.toString() : '';
+    json = json ? json.toString() : '';
+    return interpreter.createPrimitive(ajax_delete(url, json));
+  };
+   interpreter.setProperty(scope, 'ajax_delete',
+    interpreter.createNativeFunction(wrapper));   
+ 
+  var wrapper = function (url, json) {
+    url = url ? url.toString() : '';
+    json = json ? json.toString() : '';
+    return interpreter.createPrimitive(ajax_post(url, json));
+  };
+    interpreter.setProperty(scope, 'ajax_post',
+    interpreter.createNativeFunction(wrapper));   
+ 
    var wrapper = function (url) {
     url = url ? url.toString() : '';
     return interpreter.createPrimitive(ajax_get(url));
   };
- 
+   interpreter.setProperty(scope, 'ajax_get',
+    interpreter.createNativeFunction(wrapper));   
     
   var wrapper = function (name, x, y, color) {
      var xdata = []
