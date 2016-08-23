@@ -11,6 +11,9 @@ all:
 	rsync -aR js blocklyide
 	rsync -aR css blocklyide
 	rsync -aR index.html blocklyide
+compress:
+	npm install uglifyjs;
+
 install: all
 	cp -r blocklyide ../Arduinojs/page/	
 clean:
