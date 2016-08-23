@@ -28,12 +28,12 @@ function save() {
     for(ex in example_list)
     {
         if(ex == file){
-            ajax_post("/db/update/example", json);
+            ajax_post("/db/update/blockly_example", json);
             load_example_list();
             return;
         }
     }
-    ajax_post("/db/add/example", json);
+    ajax_post("/db/add/blockly_example", json);
     load_example_list();
 }
 
@@ -157,7 +157,7 @@ function load_config_list() {
 }
 
 function load_example_list() {
-    var list = ajax_get("/db/list/example");
+    var list = ajax_get("/db/list/blockly_example");
     debuginf(list);
     if (list == null) return;
     example_list = list;
