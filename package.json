@@ -1,0 +1,20 @@
+{
+  "name": "Blocklyide",
+  "version": "0.1.0",
+  "description": "Blockly IDE for opneFPGAduino",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OpenFPGAduino/BlocklyIDE.git"
+  },
+  "dependencies": {
+    "uglifyjs":"*"
+  },
+  "author": "Zhizhou Li",
+  "license": "GPL",
+  "readmeFilename": "README.md",
+  "devDependencies": {},
+  "keywords": [
+    "Restapi",
+    "node"
+  ]
+}
