@@ -25,9 +25,9 @@ function save() {
         file: file,
         xml: xml
     }
-    for(ex in example_list)
+    for(i in example_list)
     {
-        if(ex == file){
+        if(example_list[i] == file){
             ajax_post("/db/update/blockly_example", json);
             load_example_list();
             return;
@@ -160,11 +160,12 @@ function load_example_list() {
     var list = ajax_get("/db/list/blockly_example");
     debuginf(list);
     if (list == null) return;
-    example_list = list;
+    example_list = [];
     var html_list = "";
     for (var index in list) {
         debuginf(list[index]);
         var name = list[index].file;
+        example_list.push(name);
         html_list += "<span id=" + name + " onmousedown='mousedown(event)' onmouseup='mouseup(event)' class='btn btn-info'>" + name + "</span>";
     }
     document.getElementById("Ex").innerHTML = html_list;
