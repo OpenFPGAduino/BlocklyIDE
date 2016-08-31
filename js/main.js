@@ -94,7 +94,7 @@ function load_example(event) {
     debuginf("load code");
     var query = { "file": { "$eq": example } }
     var json = ajax_post("/db/query/example", query)
-    debuginf(json[0].xml);
+    debuginf(json[0]);
     debuginf(document.getElementById('startBlocks'));
     workspace.clear();
     Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(json[0].xml),
