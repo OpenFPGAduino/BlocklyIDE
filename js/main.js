@@ -93,7 +93,7 @@ function load_example(event) {
     debuginf(example);
     debuginf("load code");
     var query = { "file": { "$eq": example } }
-    var json = ajax_post("/db/query/example", query)
+    var json = ajax_post("/db/query/blockly_example", query)
     debuginf(json[0]);
     debuginf(document.getElementById('startBlocks'));
     workspace.clear();
@@ -127,7 +127,7 @@ function do_delete_example() {
     debuginf("do delete code");
     debuginf(file);
     var json = { file: file }
-    ajax_delete("/db/remove/example", json);
+    ajax_delete("/db/remove/blockly_example", json);
     load_example_list();
 }
 
