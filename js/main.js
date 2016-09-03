@@ -28,7 +28,11 @@ function save() {
     for(i in example_list)
     {
         if(example_list[i] == file){
-            ajax_post("/db/update/blockly_example", json);
+            var body = {
+                query : {file:json.file},
+                command : {$set:{xml:json.xml}}
+            }
+            ajax_post("/db/update/blockly_example", body);
             load_example_list();
             return;
         }
