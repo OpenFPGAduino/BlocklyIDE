@@ -3,7 +3,6 @@ function ajax_post(url, json) {
     var post;
     xhr.open("post", url, false);
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.setRequestHeader("cache-control", "no-cache");
     xhr.send(JSON.stringify(json));
     debuginf(xhr.responseText);
     return (JSON.parse(xhr.responseText));
@@ -13,10 +12,14 @@ function ajax_get(url) {
     var xhr = new XMLHttpRequest();
     xhr.open("get", url, false);
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.setRequestHeader("cache-control", "no-cache");
     xhr.send();
+    // if (xhr.status == 304) {
+    //     return window.localStorage.getItem(url)
+    // }
     debuginf(xhr.responseText);
-    return (JSON.parse(xhr.responseText));
+    var json = JSON.parse(xhr.responseText)
+    window.localStorage.getItem(url,json)
+    return (json);
 }
 
 function ajax_delete(url, json) {
@@ -24,7 +27,6 @@ function ajax_delete(url, json) {
     var post;
     xhr.open("delete", url, false);
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.setRequestHeader("cache-control", "no-cache");
     xhr.send(JSON.stringify(json));
     debuginf(xhr.status);
 }
