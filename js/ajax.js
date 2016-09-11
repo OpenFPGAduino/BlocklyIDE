@@ -12,9 +12,10 @@ function ajax_get(url) {
     var xhr = new XMLHttpRequest();
     xhr.open("get", url, false);
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send();
+    //xhr.setRequestHeader("Cache-Control", "max-age=0");
+    // xhr.send();
     // if (xhr.status == 304) {
-    //     return window.localStorage.getItem(url)
+    //      return window.localStorage.getItem(url)
     // }
     debuginf(xhr.responseText);
     var json = JSON.parse(xhr.responseText)
