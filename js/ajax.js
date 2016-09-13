@@ -13,7 +13,7 @@ function ajax_get(url) {
     xhr.open("get", url, false);
     xhr.setRequestHeader("Content-Type", "application/json");
     //xhr.setRequestHeader("Cache-Control", "max-age=0");
-    // xhr.send();
+    xhr.send();
     // if (xhr.status == 304) {
     //      return window.localStorage.getItem(url)
     // }
