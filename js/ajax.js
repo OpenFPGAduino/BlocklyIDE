@@ -19,7 +19,7 @@ function ajax_get(url) {
     // }
     debuginf(xhr.responseText);
     var json = JSON.parse(xhr.responseText)
-    window.localStorage.getItem(url,json)
+    //window.localStorage.getItem(url,json)
     return (json);
 }
 
