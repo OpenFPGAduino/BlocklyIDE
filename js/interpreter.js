@@ -11,9 +11,13 @@ function initApi(interpreter, scope) {
    interpreter.setProperty(scope, 'ajax_delete',
     interpreter.createNativeFunction(wrapper));   
  
-  var wrapper = function (url, json) {
+  var wrapper = function (url, xdata) {
     url = url ? url.toString() : '';
-    json = json ? json.toString() : '';
+    var json = []
+    for (i in xdata.properties)
+    {
+        json.push(xdata.properties[i].data)
+    }
     return interpreter.createPrimitive(ajax_post(url, json));
   };
     interpreter.setProperty(scope, 'ajax_post',
