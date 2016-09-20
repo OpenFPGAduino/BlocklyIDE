@@ -18,7 +18,7 @@ Blockly.Blocks['digitaloutput'] = {
   }
 };
 Blockly.JavaScript['digitaloutput'] = function(block) {
-  var dropdown_io = block.getFieldValue('io');
+  var io = block.getFieldValue('io');
   var id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
   var onoff = block.getFieldValue('onoff');
   var code = "ajax_post('/fpga/api/call/dio_"+io+"_out', ["+ id +","+ onoff +"])";
