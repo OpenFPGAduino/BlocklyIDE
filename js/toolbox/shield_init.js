@@ -12,6 +12,6 @@ Blockly.Blocks['shield_init'] = {
 
 Blockly.JavaScript['shield_init'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
-  var code = "ajax_post('/fpga/api/call/shield_ctrl_init', [])";
+  var code = "ajax_post('/fpga/api/call/shield_ctrl_init', []);\n";
   return code;
 };
