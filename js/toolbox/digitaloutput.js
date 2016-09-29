@@ -26,7 +26,7 @@ Blockly.JavaScript['digitaloutput'] = function(block) {
   return code;
 };
 
-Blockly.Blocks['digitialdir'] = {
+Blockly.Blocks['digitaldir'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Digital port");
@@ -42,10 +42,11 @@ Blockly.Blocks['digitialdir'] = {
     this.setNextStatement(true, null);
     this.setColour(260);
     this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
+    this.setHelpUrl('http://openfpgaduino.github.io/');
   }
 };
-Blockly.JavaScript['digitialdir'] = function(block) {
+
+Blockly.JavaScript['digitaldir'] = function(block) {
   var dropdown_port = block.getFieldValue('port');
   var value_id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
   var dropdown_dir = block.getFieldValue('dir');
