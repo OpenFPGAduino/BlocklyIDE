@@ -8,6 +8,9 @@ Blockly.Blocks['brushmotorinit'] = {
     this.appendValueInput("speed")
         .setCheck("Number")
         .appendField("speed");
+    this.appendValueInput("frequence")
+        .setCheck("Number")
+        .appendField("frequence");    
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -20,9 +23,10 @@ Blockly.Blocks['brushmotorinit'] = {
 Blockly.JavaScript['brushmotorinit'] = function(block) {
   var id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
   var speed = Blockly.JavaScript.valueToCode(block, 'speed', Blockly.JavaScript.ORDER_ATOMIC);
+  var frequence = Blockly.JavaScript.valueToCode(block, 'frequence', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';//void brushmotor_init(int id, unsigned int frequence, unsigned int duty_cycle);
-
+  var code =  "ajax_post('/fpga/api/call/brushmotor_init', ["+id+','+ frequence+','+ duty_cycle +"]);\n";
+  //void brushmotor_init(int id, unsigned int frequence, unsigned int duty_cycle);
   return code;
 };
 
