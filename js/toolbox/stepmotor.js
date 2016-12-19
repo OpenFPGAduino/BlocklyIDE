@@ -58,7 +58,9 @@ Blockly.Blocks['stepmotor'] = {
 };
 Blockly.JavaScript['stepmotor'] = function(block) {
   var id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
-  var dropdown_step = block.getFieldValue('step');
+  var dropdown_step;
+  if (block.getFieldValue('step') == "forward") dropdown_step = 1;
+  else dropdown_step = 0;
   var step = Blockly.JavaScript.valueToCode(block, 'step', Blockly.JavaScript.ORDER_ATOMIC);
   var code = "ajax_post('/fpga/api/call/stepmotor', ["+id+','+ dropdown_step+','+ step+"]);\n";
   return code;
