@@ -5,12 +5,12 @@ Blockly.Blocks['do_after'] = {
     this.setColour(160);
     this.appendDummyInput()
         .appendField('After')
-        .appendField(new Blockly.FieldTextInput(''), 'MILLIS')
-        .appendField('milli-seconds');
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WAIT_SECONDS);
+    this.setInputsInline(true);
     this.appendStatementInput('ONTIMEOUT')
        .appendField('do');
 	this.setPreviousStatement(true);
-    this.setNextStatement(true);
     this.setTooltip('');
   }
 };
