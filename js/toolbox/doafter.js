@@ -2,7 +2,7 @@ Blockly.Blocks['do_after'] = {
   // Print statement.
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function() {
-    this.setColour(120);
+    this.setColour(100);
     this.appendValueInput("seconds")
         .setCheck("Number")
         .appendField('After');    

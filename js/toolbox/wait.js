@@ -8,7 +8,7 @@ Blockly.Blocks['wait'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(120);
+    this.setColour(100);
     this.setTooltip('');
     this.setHelpUrl('http://openfpgaduino.github.io/');
   }

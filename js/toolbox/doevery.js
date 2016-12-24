@@ -2,7 +2,7 @@ Blockly.Blocks['do_every'] = {
   // Print statement.
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function() {
-    this.setColour(120);
+    this.setColour(100);
     this.appendDummyInput()
         .appendField('Every')
         .appendField(new Blockly.FieldTextInput(''), 'MILLIS')
