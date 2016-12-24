@@ -2,9 +2,10 @@ Blockly.Blocks['do_after'] = {
   // Print statement.
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function() {
-    this.setColour(160);
-    this.appendDummyInput()
-        .appendField('After')
+    this.setColour(120);
+    this.appendValueInput("seconds")
+        .setCheck("Number")
+        .appendField('After');    
     this.appendDummyInput()
         .appendField(Blockly.Msg.WAIT_SECONDS);
     this.setInputsInline(true);
@@ -17,8 +18,8 @@ Blockly.Blocks['do_after'] = {
 
 Blockly.JavaScript.do_after = function() {
   var branch = Blockly.JavaScript.statementToCode(this, 'ONTIMEOUT');
-  var millis = this.getFieldValue('MILLIS');
+  var seconds = this.getFieldValue('seconds');
   var id = this.getFieldValue('ID') || 'Main';
-  var code = 'var timer=setTimeout(function(){\n' + branch + '\n},' + millis + ');\n\n';
+  var code = 'var timer=setTimeout(function(){\n' + branch + '\n},' + seconds * 1000 + ');\n\n';
   return code;
 };
