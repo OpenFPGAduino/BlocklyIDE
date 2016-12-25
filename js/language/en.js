@@ -42,6 +42,7 @@ var MSG = {
   trashTooltip: "Discard all blocks.",
   catLogic: "Logic",
   catLoops: "Loops",
+  catDelay: "Delay",
   catMath: "Math",
   catText: "Text",
   catLists: "Lists",

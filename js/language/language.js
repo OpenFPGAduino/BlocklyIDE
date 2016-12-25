@@ -43,7 +43,7 @@ var load_language = function () {
 	};
     languageMenu.addEventListener('change', changeLanguage, true);
 
-	var categories = ['catLogic', 'catLoops', 'catMath', 'catText', 'catLists',
+	var categories = ['catLogic', 'catDelay', 'catLoops', 'catMath', 'catText', 'catLists',
 		'catColour', 'catVariables', 'catFunctions','catChart'];
 	for (var i = 0, cat; cat = categories[i]; i++) {
 		document.getElementById(cat).setAttribute('name', MSG[cat]);

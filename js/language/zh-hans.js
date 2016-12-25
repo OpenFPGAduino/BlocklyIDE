@@ -41,6 +41,7 @@ var MSG = {
   trashTooltip: "放弃所有块。",
   catLogic: "逻辑",
   catLoops: "循环",
+  catDelay: "延迟",
   catMath: "数学",
   catText: "文本",
   catLists: "列表",

@@ -165,7 +165,7 @@
       <block type="logic_null"></block>
       <block type="logic_ternary"></block>
     </category>
-    <category id="catLoops" colour="120">
+    <category id="catDelay" colour="100">
       <block type="wait">
         <value name="seconds">
           <shadow type="math_number">
@@ -173,6 +173,15 @@
           </shadow>
         </value>
       </block>  
+      <block type="do_after">
+        <value name="seconds">
+          <shadow type="math_number">
+            <title name="NUM">1</title>
+          </shadow>
+        </value>
+      </block>  
+    </category>
+    <category id="catLoops" colour="120">
       <block type="controls_repeat_ext">
         <value name="TIMES">
           <shadow type="math_number">
