@@ -5,7 +5,7 @@ Blockly.Blocks['do_after'] = {
     this.setColour(100);
     this.appendValueInput("seconds")
         .setCheck("Number")
-        .appendField('After');    
+        .appendField(Blockly.Msg.AFTER);    
     this.appendDummyInput()
         .appendField(Blockly.Msg.WAIT_SECONDS);
     this.setInputsInline(true);

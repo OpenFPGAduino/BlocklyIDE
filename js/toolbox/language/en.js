@@ -28,5 +28,7 @@ Blockly.Msg.PLOTPOINT = "Point";
 Blockly.Msg.PLOTSIZE = "MaxPoints";
 Blockly.Msg.ERROR = "Error";
 Blockly.Msg.CONSOLE = "Console";
+Blockly.Msg.AFTER = "After";
+Blockly.Msg.DO = 'do';
 
 

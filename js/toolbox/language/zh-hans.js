@@ -28,3 +28,5 @@ Blockly.Msg.PLOTPOINT = "点";
 Blockly.Msg.PLOTSIZE = "最大点数";
 Blockly.Msg.ERROR = "错误";
 Blockly.Msg.CONSOLE = "终端";
+Blockly.Msg.AFTER = "等";
+Blockly.Msg.DO = '做';
