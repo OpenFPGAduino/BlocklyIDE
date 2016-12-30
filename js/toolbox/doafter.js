@@ -10,7 +10,7 @@ Blockly.Blocks['do_after'] = {
         .appendField(Blockly.Msg.WAIT_SECONDS);
     this.setInputsInline(true);
     this.appendStatementInput('ONTIMEOUT')
-       .appendField('do');
+        .appendField(Blockly.Msg.DO);
 	this.setPreviousStatement(true);
     this.setTooltip('');
   }
@@ -18,8 +18,8 @@ Blockly.Blocks['do_after'] = {
 
 Blockly.JavaScript.do_after = function() {
   var branch = Blockly.JavaScript.statementToCode(this, 'ONTIMEOUT');
-  var seconds = this.getFieldValue('seconds');
-  var id = this.getFieldValue('ID') || 'Main';
+  var seconds = Blockly.JavaScript.valueToCode(this, 'seconds',
+        Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
   var code = 'var timer=setTimeout(function(){\n' + branch + '\n},' + seconds * 1000 + ');\n\n';
   return code;
 };
