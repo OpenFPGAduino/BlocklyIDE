@@ -10,6 +10,7 @@ Blockly.Msg.ANALOGIN = "模拟输入通道";
 Blockly.Msg.ANALOGINIT = "初始化模拟输入";
 Blockly.Msg.SHIELDINIT = "初始化扩展口";	
 Blockly.Msg.DIGITALOUTPUT = "数字输出端口";	
+Blockly.Msg.DIGITALDIR = "数字口方向";
 Blockly.Msg.STEERING = "舵机";	
 Blockly.Msg.STEPMOTOR= "步进电机";
 Blockly.Msg.STEPMOTORF= "前进";

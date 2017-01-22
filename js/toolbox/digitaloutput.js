@@ -29,7 +29,7 @@ Blockly.JavaScript['digitaloutput'] = function(block) {
 Blockly.Blocks['digitaldir'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Digital port");
+        .appendField(Blockly.Msg.DIGITALDIR);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([["A", "A"], ["B", "B"]]), "port");
     this.appendValueInput("ID")

@@ -10,6 +10,7 @@ Blockly.Msg.ANALOGIN = "Analog Chanel";
 Blockly.Msg.ANALOGINIT = "Initial Analog Channel";
 Blockly.Msg.SHIELDINIT = "shield_init";	
 Blockly.Msg.DIGITALOUTPUT = "Digital Port";	
+Blockly.Msg.DIGITALDIR = "Digital Direction";
 Blockly.Msg.STEERING = "Steering";	
 Blockly.Msg.STEPMOTOR= "StepMotor";
 Blockly.Msg.STEPMOTORF= "forward";
