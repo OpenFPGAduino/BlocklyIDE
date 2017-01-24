@@ -7,15 +7,13 @@ Blockly.Blocks['stepmotorinit'] = {
         .appendField("ID");
     this.appendValueInput("frequence")
         .setCheck("Number")
-        .appendField("frequence");
+        .appendField(Blockly.Msg.FREQUENCE);
     this.appendValueInput("duty_cycle")
         .setCheck("Number")
-        .appendField("duty_cycle");
+        .appendField(Blockly.Msg.DUTYCYCLE);
     this.appendValueInput("delay")
         .setCheck("Number")
-        .appendField("delay");    
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.STEPMOTORSTEP);    
+        .appendField(Blockly.Msg.DEALY);    
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
