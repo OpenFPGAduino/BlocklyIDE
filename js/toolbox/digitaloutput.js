@@ -36,7 +36,7 @@ Blockly.Blocks['digitaldir'] = {
         .setCheck("Number")
         .appendField("ID");
     this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([["input", "0"], ["output", "1"]]), "dir");
+        .appendField(new Blockly.FieldDropdown([[Blockly.Msg.INPUT, "0"], [Blockly.Msg.OUTPUT, "1"]]), "dir");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
