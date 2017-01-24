@@ -50,7 +50,6 @@ Blockly.JavaScript['digitaldir'] = function(block) {
   var dropdown_port = block.getFieldValue('port');
   var value_id = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
   var dropdown_dir = block.getFieldValue('dir');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
+  var code = "ajax_post('/fpga/api/call/dio_"+io+"_dir', ["+ id +","+ dropdown_dir +"]);\n";
   return code;
 };
