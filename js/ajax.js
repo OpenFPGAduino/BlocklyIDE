@@ -5,7 +5,10 @@ function ajax_post(url, json) {
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(json));
     debuginf(xhr.responseText);
-    return (JSON.parse(xhr.responseText));
+    if (xhr.readyState==4 && xhr.status==200)
+    	return (JSON.parse(xhr.responseText));
+    else
+        return null;
 }
 
 function ajax_get(url) {
@@ -14,13 +17,17 @@ function ajax_get(url) {
     xhr.setRequestHeader("Content-Type", "application/json");
     //xhr.setRequestHeader("Cache-Control", "max-age=0");
     xhr.send();
-    // if (xhr.status == 304) {
-    //      return window.localStorage.getItem(url)
-    // }
-    debuginf(xhr.responseText);
-    var json = JSON.parse(xhr.responseText)
-    //window.localStorage.getItem(url,json)
-    return (json);
+    if (xhr.readyState==4 && xhr.status==200) {
+        debuginf(xhr.responseText);
+        // if (xhr.status == 304) {
+        //      return window.localStorage.getItem(url)
+        // }
+        var json = JSON.parse(xhr.responseText)
+        //window.localStorage.getItem(url,json)
+        return (json);
+    }
+    else 
+        return null;
 }
 
 function ajax_delete(url, json) {
