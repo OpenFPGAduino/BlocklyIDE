@@ -1,7 +1,6 @@
 Blockly.Blocks['console'] = {
   init: function() {
     this.appendValueInput("Console")
-        .setCheck("String")
         .appendField(Blockly.Msg.CONSOLE);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

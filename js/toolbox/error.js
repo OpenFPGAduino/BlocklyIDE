@@ -1,7 +1,6 @@
 Blockly.Blocks['error'] = {
   init: function() {
     this.appendValueInput("Error")
-        .setCheck("String")
         .appendField(Blockly.Msg.ERROR);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
